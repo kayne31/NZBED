@@ -1,0 +1,13 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"/rest/p/http_request";}s:8:"_content";s:12:"HTTP_Request";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.2.1";s:2:"st";s:6:"stable";s:1:"l";s:3:"BSD";s:1:"m";s:3:"avb";s:1:"s";s:45:"Provides an easy way to perform HTTP requests";s:1:"d";s:114:"Supports GET/POST/HEAD/TRACE/PUT/DELETE, Basic authentication, Proxy,
+Proxy Authentication, SSL, file uploads etc.";s:2:"da";s:19:"2004-04-29 09:11:04";s:1:"n";s:623:"Additions and changes:
+ * Applied patch from #851 (First parameter of constructor is now optional)
+ * Implemented #526 (It is now possible to set timeout on socket, via
+   parameter readTimeout)
+ * Implemented #1141 (It is now possible to pass options to socket via 
+   parameter socketOptions, Net_Socket 1.0.2 is needed for this functionality)
+ 
+Fixes:
+ * Fixed #842 (Doc comments incorrectly described the possible return values)
+ * Fixed #1152 (Incorrect handling of cookies with '=' in value)
+ * Fixed #1158 (Cookie parameters are not necessarily lowercase)
+ * Fixed #1080 (Cookies should not be urlencoded/urldecoded)";s:1:"f";s:5:"12021";s:1:"g";s:42:"http://pear.php.net/get/HTTP_Request-1.2.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.2.1.xml";}}}

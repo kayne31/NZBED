@@ -1,0 +1,10 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/p/date";}s:8:"_content";s:4:"Date";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:3:"1.2";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:3:"cox";s:1:"s";s:26:"Date and Time Zone Classes";s:1:"d";s:472:"Generic classes for representation and manipulation of
+dates, times and time zones without the need of timestamps,
+which is a huge limitation for php programs.  Includes time zone data,
+time zone conversions and many date/time conversions.
+It does not rely on 32-bit system date stamps, so
+you can display calendars and compare dates that date
+pre 1970 and post 2038. This package also provides a class
+to convert date strings between Gregorian and Human calendar formats.";s:2:"da";s:19:"2002-08-06 17:01:00";s:1:"n";s:151:"- The Date package now contains Calc and Human
+- Date/Calc.php -> added compareDates() func
+- Date.php -> modified format(), %p for am/pm, %P for AM/PM";s:1:"f";s:5:"24457";s:1:"g";s:32:"http://pear.php.net/get/Date-1.2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:15:"package.1.2.xml";}}}

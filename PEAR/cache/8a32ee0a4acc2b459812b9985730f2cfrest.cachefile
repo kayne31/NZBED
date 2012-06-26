@@ -1,0 +1,9 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/p/http_client";}s:8:"_content";s:11:"HTTP_Client";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:3:"0.1";s:2:"st";s:4:"beta";s:1:"l";s:11:"PHP License";s:1:"m";s:3:"avb";s:1:"s";s:68:"Easy way to perform multiple HTTP requests and process their results";s:1:"d";s:397:"The HTTP_Client class wraps around HTTP_Request and provides a higher level interface 
+for performing multiple HTTP requests.
+
+Features:
+* Manages cookies and referrers between requests
+* Handles HTTP redirection
+* Has methods to set default headers and request parameters
+* Implements the Subject-Observer design pattern: the base class sends 
+events to listeners that do the response processing.";s:2:"da";s:19:"2003-06-05 13:55:00";s:1:"n";s:20:"Initial PEAR release";s:1:"f";s:4:"5886";s:1:"g";s:39:"http://pear.php.net/get/HTTP_Client-0.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:15:"package.0.1.xml";}}}

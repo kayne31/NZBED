@@ -1,0 +1,11 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"/rest/p/net_ldap2";}s:8:"_content";s:9:"Net_LDAP2";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:6:"2.0.11";s:2:"st";s:6:"stable";s:1:"l";s:14:"LGPLv3 License";s:1:"m";s:4:"beni";s:1:"s";s:69:"Object oriented interface for searching and manipulating LDAP-entries";s:1:"d";s:612:"Net_LDAP2 is the successor of Net_LDAP which is a clone of Perls Net::LDAP
+                object interface to directory servers. It does contain most of Net::LDAPs
+                features but has some own too.
+                 With Net_LDAP2 you have:
+                 * A simple object-oriented interface to connections, searches entries and filters.
+                 * Support for tls and ldap v3.
+                 * Simple modification, deletion and creation of ldap entries.
+                 * Support for schema handling.
+
+                 Net_LDAP2 layers itself on top of PHP's existing ldap extensions.";s:2:"da";s:19:"2011-01-19 14:24:10";s:1:"n";s:141:"* (doc issue) Fix for #17861: Missing komma in example
+* Fix for #18202: Adding attributes to a Fresh Entry saving and laterly updating fails";s:1:"f";s:5:"90258";s:1:"g";s:40:"http://pear.php.net/get/Net_LDAP2-2.0.11";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"package.2.0.11.xml";}}}

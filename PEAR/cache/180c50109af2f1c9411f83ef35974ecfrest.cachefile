@@ -1,0 +1,45 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:10:"/rest/p/db";}s:8:"_content";s:2:"DB";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:6:"1.7.13";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:7:"aharvey";s:1:"s";s:26:"Database Abstraction Layer";s:1:"d";s:1147:"DB is a database abstraction layer providing:
+* an OO-style query API
+* portability features that make programs written for one DBMS work with other DBMS's
+* a DSN (data source name) format for specifying database servers
+* prepare/execute (bind) emulation for databases that don't support it natively
+* a result object for each query response
+* portable error codes
+* sequence emulation
+* sequential and non-sequential row fetching as well as bulk fetching
+* formats fetched rows as associative arrays, ordered arrays or objects
+* row limit support
+* transactions support
+* table information interface
+* DocBook and phpDocumentor API documentation
+
+DB layers itself on top of PHP's existing
+database extensions.
+
+Drivers for the following extensions pass
+the complete test suite and provide
+interchangeability when all of DB's
+portability options are enabled:
+
+  fbsql, ibase, informix, msql, mssql,
+  mysql, mysqli, oci8, odbc, pgsql,
+  sqlite and sybase.
+
+There is also a driver for the dbase
+extension, but it can't be used
+interchangeably because dbase doesn't
+support many standard DBMS features.
+
+DB is compatible with both PHP 4 and PHP 5.";s:2:"da";s:19:"2007-09-21 11:16:43";s:1:"n";s:558:"This release of DB fixes a number of minor issues reported since the release of DB 1.7.12.
+
+All drivers:
+* Replaced instances of '=& new Foo' with '= new Foo' to make DB (slightly) more E_STRICT friendly.  Request 11581.
+
+mysql:
+* Added an explicit call to select the database to fix calls to tableInfo() without a preceding query.  Bug 11580.
+
+mysqli:
+* Added an explicit call to select the database to fix calls to tableInfo() without a preceding query.  Bug 11580.
+
+sqlite:
+* Altered fetchInto() to remove extraneous quotes returned by SQLite.  Bug 11716.";s:1:"f";s:6:"132246";s:1:"g";s:33:"http://pear.php.net/get/DB-1.7.13";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"package.1.7.13.xml";}}}

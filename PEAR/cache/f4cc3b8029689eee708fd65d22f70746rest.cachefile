@@ -1,0 +1,28 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/xml_query2xml";}s:8:"_content";s:13:"XML_Query2XML";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.8.0";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:11:"lukasfeiler";s:1:"s";s:33:"Creates XML data from SQL queries";s:1:"d";s:825:"XML_Query2XML allows you to transform the records retrieved
+with one or more SQL SELECT queries into XML data. Very simple to
+highly complex transformations are supported. Is was written with
+performance in mind and can handle large amounts of data. No XSLT needed!
+Major features:
+1. XML_Query2XML works with the classes provided by PHP5's DOM XML extension
+2. minimum effort necessary to get the simple jobs done
+3. highly configurable for more complex tasks
+4. ISO/IEC 9075-14:2005 support: mapping of SQL identifiers to XML names
+5. works with any database that is supported by PEAR DB, PEAR MDB2 or ADOdb
+6. debugging and logging features
+7. provides profiling features
+8. in-depth documentation: tutorials and API documentation
+9. Eight case studies: from very simple to highly complex scenarios
+10. 433 phpt unit tests";s:2:"da";s:19:"2006-11-03 19:19:29";s:1:"n";s:635:"This release is *NOT BACKWARD COMPATIBLE*.
+I'm sorry for the BC break, but due to security considerations XML_Query2XML
+does not use the native function eval() anymore. Therefore
+- the "!" prefix is not supported anymore
+- the behaviour of the "condition" option was changed
+- the new callback prefix "#" was added (use it instead of the "!" prefix)
+
+A migration strategy is documented at
+http://query2xml.sf.net/docs/html/XML_Query2XML/tutorial_XML_Query2XML.pkg.html#migration
+
+Also:
+- unit tests were migrated from PHPUnit2 to phpt
+- XML_Query2XML now comes with 433 unit tests
+- migrated from package.xml version 1.0 to version 2.0";s:1:"f";s:6:"173562";s:1:"g";s:43:"http://pear.php.net/get/XML_Query2XML-0.8.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.8.0.xml";}}}

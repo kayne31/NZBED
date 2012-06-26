@@ -1,0 +1,19 @@
+a:10:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.package";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:80:"http://pear.php.net/dtd/rest.package    http://pear.php.net/dtd/rest.package.xsd";}s:1:"n";s:11:"Archive_Zip";s:1:"c";s:12:"pear.php.net";s:2:"ca";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"/rest/c/File+Formats";}s:8:"_content";s:12:"File Formats";}s:1:"l";s:4:"LGPL";s:1:"s";s:35:"Zip file archiving management class";s:1:"d";s:791:"------------------------------------
+The PECL Zip extension is faster and more current than this native PHP library. If possible, you should use the PECL extension instead:
+
+  http://pecl.php.net/zip
+------------------------------------
+
+Archive_Zip
+
+This class provides the ability to handle Zip files using native PHP. No extra libraries are needed. This class offers tools that can create, list, extract, unpack, append Zip files.
+
+Vincent Blavet wrote this application, but it's unmaintained currently. Some ideas for future work (feel free to volunteer): 
+ A) Add driver for use with pecl/zip
+ B) Collaborate with File_Archive
+ C) Add documentation
+
+See Also:
+http://en.wikipedia.org/wiki/ZIP_%28file_format%29
+
+For a PEAR alternative to this class, consider using File_Archive instead.";s:1:"r";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/r/archive_zip";}}s:2:"dc";s:12:"pecl.php.net";s:2:"dp";s:3:"zip";}

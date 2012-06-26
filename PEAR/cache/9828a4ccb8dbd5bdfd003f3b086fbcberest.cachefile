@@ -1,0 +1,9 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_session2";}s:8:"_content";s:13:"HTTP_Session2";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.7.1";s:2:"st";s:4:"beta";s:1:"l";s:15:"The BSD License";s:1:"m";s:4:"till";s:1:"s";s:20:"PHP5 Session Handler";s:1:"d";s:344:"PHP5 Object-oriented interface to the session_* family functions it provides extra features such as database storage for session data using DB/MDB2 packages.
+
+Supported containers are PEAR::DB, PEAR::MDB2 and Memcache.
+
+HTTP_Session2 introduces new methods such as isNew(), useCookies(), setExpire(), setIdle(), isExpired(), isIdled() and more.";s:2:"da";s:19:"2008-02-20 11:58:52";s:1:"n";s:263:"Thanks to the people who reported those bugs:
+* Fix Bug #12701: setExpire() bug + documentation problem
+* Fix Bug #13084: Idle property and Expiry property don't work
+* Fix Bug #13126: Class method visibility
+* Fix Bug #13127: The given dsn was not valid for MDB2";s:1:"f";s:5:"13666";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Session2-0.7.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.7.1.xml";}}}

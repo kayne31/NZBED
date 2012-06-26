@@ -1,0 +1,10 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/p/date";}s:8:"_content";s:4:"Date";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.4.1";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:6:"pajoye";s:1:"s";s:26:"Date and Time Zone Classes";s:1:"d";s:472:"Generic classes for representation and manipulation of
+dates, times and time zones without the need of timestamps,
+which is a huge limitation for php programs.  Includes time zone data,
+time zone conversions and many date/time conversions.
+It does not rely on 32-bit system date stamps, so
+you can display calendars and compare dates that date
+pre 1970 and post 2038. This package also provides a class
+to convert date strings between Gregorian and Human calendar formats.";s:2:"da";s:19:"2004-02-24 11:07:02";s:1:"n";s:157:"- Fix #674 endOfWeek() beginOfWeek()
+- Fix #727, weeksInMonth (wrong result with some dates)
+- Fix #674 (and old system #22549), check arguments in Date_Span";s:1:"f";s:5:"41976";s:1:"g";s:34:"http://pear.php.net/get/Date-1.4.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.4.1.xml";}}}

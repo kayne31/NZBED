@@ -1,0 +1,12 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_request2";}s:8:"_content";s:13:"HTTP_Request2";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.5.2";s:2:"st";s:5:"alpha";s:1:"l";s:11:"BSD License";s:1:"m";s:3:"avb";s:1:"s";s:46:"Provides an easy way to perform HTTP requests.";s:1:"d";s:478:"PHP5 rewrite of HTTP_Request package. Provides cleaner API and pluggable
+Adapters. Currently available are:
+  * Socket adapter, based on old HTTP_Request code,
+  * Curl adapter, wraps around PHP's cURL extension,
+  * Mock adapter, to use for testing packages dependent on HTTP_Request2.
+Supports POST requests with data and file uploads, basic and digest 
+authentication, cookies, proxies, gzip and deflate encodings, redirects,
+monitoring the request progress with Observers...";s:2:"da";s:19:"2010-04-21 12:56:48";s:1:"n";s:277:"* magic_quotes_runtime PHP setting could be incorrectly enabled after
+  performing the request (bug #16440)
+* Unit tests fixes (bugs #17079, #17106, #17326)
+* Observer_Log now appends to the log file rather than rewrites it (thanks to
+  troelskn at gmail dot com for reporting)";s:1:"f";s:5:"58159";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Request2-0.5.2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.5.2.xml";}}}

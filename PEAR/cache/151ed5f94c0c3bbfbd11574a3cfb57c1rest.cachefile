@@ -1,0 +1,20 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:8:"1.5.0RC1";s:2:"st";s:4:"beta";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:56:"Provides missing functionality for older versions of PHP";s:1:"d";s:68:"PHP_Compat provides missing functionality for older versions of PHP.";s:2:"da";s:19:"2005-12-05 16:42:21";s:1:"n";s:398:"Added more components:
+* is_scalar
+* property_exists
+* inet_pton
+* inet_ntop
+* bcinvert
+* bcpowmod
+* mime_content_type
+* time_sleep_until
+* array_product
+* idate
+Bug fixes:
+* Fixed #4783 (PATH_SEPARATOR)
+* Fixed #4788 (version_compare)
+* Fixed #4851 (var_export)
+* Fixed #5049 (strripos)
+* Fixed #5078 (str_shuffle)
+* Fixed #5691 (fputcsv)
+* Fixed #5469 (md5_file)
+* Fixed #6082 (file_put_contents)";s:1:"f";s:5:"44166";s:1:"g";s:43:"http://pear.php.net/get/PHP_Compat-1.5.0RC1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"package.1.5.0RC1.xml";}}}

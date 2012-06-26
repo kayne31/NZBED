@@ -1,0 +1,11 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/p/http";}s:8:"_content";s:4:"HTTP";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.4.1";s:2:"st";s:6:"stable";s:1:"l";s:15:"New BSD License";s:1:"m";s:8:"jausions";s:1:"s";s:28:"Miscellaneous HTTP utilities";s:1:"d";s:152:"The HTTP class is a class with static methods for doing
+miscellaneous HTTP related stuff like date formatting,
+language negotiation or HTTP redirection.";s:2:"da";s:19:"2008-08-31 16:18:08";s:1:"n";s:412:"* Fixed bug #7130 - HTTP::absoluteUri("?foo") loses path
+* Fixed bug #12672 - PHP_SELF ending on / causes incorrect redirects
+* Fixed bug #12571 - Wrong license in package.xml
+* Fixed bug #12759 - DOS linebreaks
+* Fixed req #9148 - Added negotiateCharset() method
+* Fixed req #11060 - Added negotiateMimeType() method
+* Added regression tests
+* Bump to package.xml v2.0
+* Added failover JavaScript for redirect()";s:1:"f";s:4:"8635";s:1:"g";s:34:"http://pear.php.net/get/HTTP-1.4.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.4.1.xml";}}}

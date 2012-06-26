@@ -1,0 +1,17 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_download";}s:8:"_content";s:13:"HTTP_Download";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:6:"0.10.0";s:2:"st";s:4:"beta";s:1:"l";s:3:"PHP";s:1:"m";s:4:"mike";s:1:"s";s:19:"Send HTTP Downloads";s:1:"d";s:216:"Provides an interface to easily send hidden files or any arbitrary data to the client through HTTP. 
+
+It features HTTP caching, compression, ranges (partial downloads and resuming) and kind of a throttling mechanism.";s:2:"da";s:19:"2004-08-31 07:54:39";s:1:"n";s:581:"Fixes:
+======
+* Adjusted cache headers to force IE to revalidate
+* Attempt to fix Bug #2110 (long delay until "Save as..." popup)
+
+Features:
+=========
++ Added the possibility to send HTTP responses 
+  without a "Content-Disposition" header
++ Implemented kind of a throttling mechanism
+  This can be done by setting $bufferSize through 
+  HTTP_Download::setBufferSize($bytes) and adjusting $throttleDelay
+  through HTTP_Download::setThrottleDelay($seconds), e.g. a
+  buffer size of 25600 bytes and a throttle delay of 1 second
+  will lead to a download rate of approximatly 25 KB/s.";s:1:"f";s:4:"7729";s:1:"g";s:44:"http://pear.php.net/get/HTTP_Download-0.10.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"package.0.10.0.xml";}}}

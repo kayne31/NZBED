@@ -1,0 +1,23 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"/rest/p/http_request";}s:8:"_content";s:12:"HTTP_Request";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.4.0";s:2:"st";s:6:"stable";s:1:"l";s:3:"BSD";s:1:"m";s:3:"avb";s:1:"s";s:45:"Provides an easy way to perform HTTP requests";s:1:"d";s:114:"Supports GET/POST/HEAD/TRACE/PUT/DELETE, Basic authentication, Proxy,
+Proxy Authentication, SSL, file uploads etc.";s:2:"da";s:19:"2006-10-25 12:28:00";s:1:"n";s:1202:"* Added Keep-Alive support (request #4806), thanks to Justin Patrin for the
+  initial patch. Please note that "Connection: close" header is still added
+  by default, you need to explicitly add "Connection: Keep-Alive" header or
+  remove "Connection" header if using HTTP 1.1
+* A new disconnect() method was added which forces disconnection from the 
+  server if Keep-Alive is used. Also two new events are sent to the Listeners:
+  "connect" and "disconnect"
+* Added getUrl() method (request #6589)
+* Added method to properly parse header of gzip-encoded data (see RFC 1952).
+  This takes care of situations when the server adds some additional data
+  to the header (bug #8245) or sends data that is not gzip-encoded when
+  "Content-Encoding: gzip" header is present (bug #8213)
+* "Proxy-Authorization" header is now properly set by constructor
+  (bug #5913)
+* Fixed doc comments mentioning addBody() method instead of proper setBody()
+  (bug #5969)
+* Fixed erroneous removal of "Content-Type" header from request
+  (bug #7922)
+* Bogus HTTP headers are now ignored (bug #8214)
+* Path is set to "/" if an URL without path (http://www.example.com)
+  is given (bug #8662)
+* Moved to package.xml version 2.0";s:1:"f";s:5:"15262";s:1:"g";s:42:"http://pear.php.net/get/HTTP_Request-1.4.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.4.0.xml";}}}

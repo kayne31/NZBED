@@ -1,0 +1,19 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:7:"1.6.0a3";s:2:"st";s:5:"alpha";s:1:"l";s:11:"PHP License";s:1:"m";s:8:"doconnor";s:1:"s";s:55:"Provides components to achieve PHP version independence";s:1:"d";s:175:"PHP_Compat provides drop-in functions and constants for compatibility with newer versions of PHP, environment emulation, and an API to allow for version independent authoring.";s:2:"da";s:19:"2010-10-05 15:54:22";s:1:"n";s:957:"QA Release
+Bug #7402 Missing unit tests 	hm2k
+Bug #15409 Broken unit tests 	arpad
+Bug #15531 getmxrr() support for windows 	hm2k
+Bug #15532 ini_set('register_globals', 'off'); not required 	hm2k
+Bug #15537 IIS REQUEST_URI compatibility 	hm2k
+Bug #15539 PHP_EOL link is incorrect. 	hm2k
+Bug #15540 htmlspecialchars has incorrect "since" 	arpad
+Bug #15684 Add str_getcsv support for 5.1.0 + 	arpad
+Bug #15688 PATHINFO_FILENAME 	hm2k
+Bug #15698 Typo in str_ireplace.php 	hm2k
+Bug #15707 file_get_contents has incomplete support 	arpad
+Bug #16157 Missing argument 5 for setrawcookie() 	hm2k
+Bug #16158 Win Seven 	Fatal error: Cannot call __clone() method on objects 	arpad
+Bug #16191 fprintf parameters lost 	arpad
+Bug #16462 add json_decode-function that behaves like in PHP5.2 	hm2k
+Bug #16921 PHP_Compat includes functions that no version of PHP does 	hm2k
+Bug #16922 bad minimum reqirements - getopt 	hm2k
+Bug #16945 Spelling error in long desc 	saltybeagle";s:1:"f";s:5:"68377";s:1:"g";s:42:"http://pear.php.net/get/PHP_Compat-1.6.0a3";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"package.1.6.0a3.xml";}}}

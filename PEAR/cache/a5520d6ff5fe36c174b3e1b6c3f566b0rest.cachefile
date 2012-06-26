@@ -1,0 +1,25 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:8:"1.0.0RC1";s:2:"st";s:4:"beta";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:57:"Provides missing functionality for older versions of PHP.";s:1:"d";s:325:"PHP_Compat provides missing functionality in the form of Constants and Functions for older versions of PHP.
+Constants:
+* E_STRICT
+* PATH_SEPERATOR
+* STDIN
+* STDOUT
+* STDERR
+* FILE_APPEND
+* FILE_USE_INCLUDE_PATH
+Functions:
+* file_get_contents
+* file_put_contents
+* is_a
+* scandir
+* array_combine
+* str_split
+* http_build_query";s:2:"da";s:19:"2004-05-29 05:41:01";s:1:"n";s:219:"Added more components:
+* http_build_query
+* array_udiff
+* array_udiff_assoc
+* FILE_APPEND
+* FILE_USE_INCLUDE_PATH
+Heavily modified file_put_contents for greater support
+A couple of bug fixes
+Added complete unit testing!";s:1:"f";s:4:"8416";s:1:"g";s:43:"http://pear.php.net/get/PHP_Compat-1.0.0RC1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"package.1.0.0RC1.xml";}}}

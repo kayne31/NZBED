@@ -1,0 +1,12 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.4.0";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:56:"Provides missing functionality for older versions of PHP";s:1:"d";s:68:"PHP_Compat provides missing functionality for older versions of PHP.";s:2:"da";s:19:"2005-05-10 08:16:03";s:1:"n";s:225:"Added more components:
+* DIRECTORY_SEPARATOR
+* pg_affected_rows
+* pg_unescape_bytea
+* pg_escape_bytea
+* ibase_timefmt
+* get_headers
+* debug_print_backtrace
+* mhash
+Bug fixes:
+* Improved loadVersion method
+* Fixed bug in clone";s:1:"f";s:5:"38961";s:1:"g";s:40:"http://pear.php.net/get/PHP_Compat-1.4.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.4.0.xml";}}}

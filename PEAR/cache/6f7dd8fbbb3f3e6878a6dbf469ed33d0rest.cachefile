@@ -1,0 +1,7 @@
+a:8:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.package";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:80:"http://pear.php.net/dtd/rest.package    http://pear.php.net/dtd/rest.package.xsd";}s:1:"n";s:4:"Date";s:1:"c";s:12:"pear.php.net";s:2:"ca";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/c/Date+and+Time";}s:8:"_content";s:13:"Date and Time";}s:1:"l";s:11:"BSD License";s:1:"s";s:41:"Generic date/time handling class for PEAR";s:1:"d";s:367:"Generic classes for representation and manipulation of
+dates, times and time zones without the need of timestamps,
+which is a huge limitation for PHP programs.  Includes time zone data,
+time zone conversions and many date/time conversions.
+It does not rely on 32-bit system date stamps, so
+you can display calendars and compare dates that date
+pre 1970 and post 2038.";s:1:"r";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/r/date";}}}

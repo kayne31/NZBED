@@ -1,0 +1,35 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/p/http_upload";}s:8:"_content";s:11:"HTTP_Upload";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.9.1";s:2:"st";s:6:"stable";s:1:"l";s:4:"LGPL";s:1:"m";s:4:"wenz";s:1:"s";s:59:"Easy and secure managment of files submitted via HTML Forms";s:1:"d";s:491:"This class provides an advanced file uploader system for file uploads made
+from html forms. Features:
+ * Can handle from one file to multiple files.
+ * Safe file copying from tmp dir.
+ * Easy detecting mechanism of valid upload, missing upload or error.
+ * Gives extensive information about the uploaded file.
+ * Rename uploaded files in different ways: as it is, safe or unique
+ * Validate allowed file extensions
+ * Multiple languages error messages support (es, en, de, fr, it, nl, pt_BR)";s:2:"da";s:19:"2004-08-11 02:27:47";s:1:"n";s:982:"**The first release in (exactly!) two years!**
+
+- **Changes between 0.9.0 and 0.9.1: fixed md5 hashes in package.xml!***
+- (antonio) Added support for both PHP >= 4.2 and PHP 4.0-4.1
+- (antonio) Fixed a lot of bugs
+- (antonio, wenz) Fixed some localization strings
+- (wenz) if only empty files are uploaded, an error message 
+  is triggered 
+- (wenz) added setChmod() method to change CHMOD of uploaded files (patch by Markus Tacker) 
+- (cox, antonio, wenz) many minor fixes
+- (cox) Error detection was enhanced, so you no longer need to
+  check for PEAR::isError() in $upload->getFiles() or call
+  $upload->isMissing(). Instead you'll
+  get the error when do a check for $file->isError().
+
+  Example:
+
+   $upload = new HTTP_Upload('en');
+   $file = $upload->getFiles('i_dont_exist_in_form_definition');
+   if ($file->isError()) {
+      die($file->getMessage());
+   }
+
+TODO:
+
+- Move error class to a new file
+- As PEAR in general requires now PHP 4.2, maybe drop BC compat in future";s:1:"f";s:4:"9460";s:1:"g";s:41:"http://pear.php.net/get/HTTP_Upload-0.9.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.9.1.xml";}}}

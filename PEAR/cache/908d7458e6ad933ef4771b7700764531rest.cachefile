@@ -1,0 +1,6 @@
+a:8:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.package";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:80:"http://pear.php.net/dtd/rest.package    http://pear.php.net/dtd/rest.package.xsd";}s:1:"n";s:18:"PEAR_Frontend_Gtk2";s:1:"c";s:12:"pear.php.net";s:2:"ca";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/c/PEAR";}s:8:"_content";s:4:"PEAR";}s:1:"l";s:4:"LGPL";s:1:"s";s:42:"Graphical PEAR installer based on PHP-Gtk2";s:1:"d";s:330:"This program is a graphical frontend for PEAR, the PHP Extension
+  and Application Repository. It uses PHP-Gtk2 as graphical toolkit
+  and lets you easily browse available packages and install them
+  on your computer.
+  The program is designed to be by end-users, making it as easy as
+  possible to install and uninstall programs.";s:1:"r";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:26:"/rest/r/pear_frontend_gtk2";}}}

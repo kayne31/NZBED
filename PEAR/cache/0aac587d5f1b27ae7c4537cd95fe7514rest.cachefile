@@ -1,0 +1,10 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"/rest/p/http_request";}s:8:"_content";s:12:"HTTP_Request";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.4.2";s:2:"st";s:6:"stable";s:1:"l";s:3:"BSD";s:1:"m";s:3:"avb";s:1:"s";s:45:"Provides an easy way to perform HTTP requests";s:1:"d";s:114:"Supports GET/POST/HEAD/TRACE/PUT/DELETE, Basic authentication, Proxy,
+Proxy Authentication, SSL, file uploads etc.";s:2:"da";s:19:"2007-10-26 09:48:41";s:1:"n";s:557:"* The final CRLF was not properly added to request headers on POST request 
+  with no post data (Thanks to Brock Weaver)
+* Added error codes (request #12335, thanks to Joe Stump for the patch)
+* HTTP_Request sent broken requests on redirects with no trailing slash
+  (bug #12308, thanks to Joe Stump for the patch)
+* Requests with a body consisting of only a symbol '0' were sent without body
+  (reported privately by Sam Ghods)
+* download-progress.php example was broken since 1.4.0 due to addition of 
+  'connect' and 'disconnect' events. Now works again.";s:1:"f";s:5:"16398";s:1:"g";s:42:"http://pear.php.net/get/HTTP_Request-1.4.2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.4.2.xml";}}}

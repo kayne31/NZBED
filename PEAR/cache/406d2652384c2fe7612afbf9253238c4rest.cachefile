@@ -1,0 +1,9 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/p/http_header";}s:8:"_content";s:11:"HTTP_Header";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.2.1";s:2:"st";s:6:"stable";s:1:"l";s:12:"BSD, revised";s:1:"m";s:8:"doconnor";s:1:"s";s:64:"OO interface to modify and handle HTTP headers and status codes.";s:1:"d";s:160:"This class provides methods to set/modify HTTP headers 
+and status codes including an HTTP caching facility.
+It also provides methods for checking Status types.";s:2:"da";s:19:"2010-10-15 14:19:20";s:1:"n";s:223:"QA release
+ Implemented FR #5914 - add possibility to prettify header names]
+Bug #5830
+Fatal error: Only variables can be passed by reference in /usr/local/share/php/
+Bug #5404 Headers cannot be unset
+Package 2.0
+SVN layout";s:1:"f";s:5:"10682";s:1:"g";s:41:"http://pear.php.net/get/HTTP_Header-1.2.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.2.1.xml";}}}

@@ -1,0 +1,8 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/numbers_roman";}s:8:"_content";s:13:"Numbers_Roman";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.0.1";s:2:"st";s:4:"beta";s:1:"l";s:3:"PHP";s:1:"m";s:8:"gurugeek";s:1:"s";s:59:"Provides methods for converting to and from Roman Numerals.";s:1:"d";s:198:"Numbers_Roman provides static methods for converting to and from Roman 
+numerals. It supports Roman numerals in both uppercase and lowercase 
+styles and conversion for and to numbers up to 5 999 999";s:2:"da";s:19:"2004-04-28 16:57:47";s:1:"n";s:339:"- Added support for lowercase input/output
+- Starting with this release conversion is supported from integers up to 
+  5 999 999 and from the equivalent Roman Numerals
+- Added an optional HTML tag to disply roman numerals over 4000 in an 
+  historically accurate fashion 
+- General fixes and code rewrite maintaining backward compatibility";s:1:"f";s:4:"3778";s:1:"g";s:43:"http://pear.php.net/get/Numbers_Roman-1.0.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.0.1.xml";}}}

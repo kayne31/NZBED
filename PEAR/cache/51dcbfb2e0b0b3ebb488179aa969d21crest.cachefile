@@ -1,0 +1,15 @@
+a:8:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.package";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:80:"http://pear.php.net/dtd/rest.package    http://pear.php.net/dtd/rest.package.xsd";}s:1:"n";s:13:"XML_Query2XML";s:1:"c";s:12:"pear.php.net";s:2:"ca";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:11:"/rest/c/XML";}s:8:"_content";s:3:"XML";}s:1:"l";s:8:"LGPLv2.1";s:1:"s";s:33:"Creates XML data from SQL queries";s:1:"d";s:853:"XML_Query2XML allows you to transform the records retrieved
+with one or more SQL SELECT queries into XML data. Very simple to
+highly complex transformations are supported. Is was written with
+performance in mind and can handle large amounts of data. No XSLT needed!
+Major features:
+1. XML_Query2XML works with the classes provided by PHP5's built-in DOM API
+2. open driver architecture
+3. comes with drivers for PDO, PEAR DB, PEAR MDB2, ADOdb, PEAR Net_LDAP and Net_LDAP2
+4. ISO/IEC 9075-14:2005 support: mapping of SQL identifiers to XML names
+5. highly configurable
+6. easy integration of other XML data sources (e.g. raw XML data stored in the DB)
+7. debugging, logging and profiling features
+8. XML encoding: support for UTF-8, ISO-8859-1 and others
+9. in-depth documentation and case studies: tutorials and API documentation
+10. 238 phpt unit tests";s:1:"r";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/r/xml_query2xml";}}}

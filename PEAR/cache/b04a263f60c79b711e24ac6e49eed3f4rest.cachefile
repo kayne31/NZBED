@@ -1,0 +1,30 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/xml_query2xml";}s:8:"_content";s:13:"XML_Query2XML";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.6.0";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:11:"lukasfeiler";s:1:"s";s:33:"Creates XML data from SQL queries";s:1:"d";s:826:"XML_Query2XML allows you to transform the records retrieved
+with one or more SQL SELECT queries into XML data. Very simple to
+highly complex transformations are supported. Is was written with
+performance in mind and can handle large amounts of data. No XSLT needed!
+Major features:
+1. XML_Query2XML works with the classes provided by PHP5's DOM XML extension
+2. minimum effort necessary to get the simple jobs done
+3. highly configurable for more complex tasks
+4. ISO/IEC 9075-14:2005 support: mapping of SQL identifiers to XML names
+5. works with any database that is supported by PEAR DB or PEAR MDB2
+6. debugging and logging features
+7. provides profiling features
+8. in-depth documentation: tutorials and API documentation
+9. Eight case studies: from very simple to highly complex scenarios
+10. 168 unit tests for PHPUnit2";s:2:"da";s:19:"2006-04-23 11:07:00";s:1:"n";s:782:"This release includes all changes recommeded during the PEPr voting process.
+Major changes:
+- asterisk shortcut that expands to all columns in the result set;
+  the tutorial was updated to document this feature and a new
+  case study (case 07) was added to provide a good example
+- implementation of ISO/IEC 9075-14:2005 for mapping SQL identifiers to
+  XML names; the tutorial was updates to document this feature and
+  a new case study (case 08) was added to provide lots of examples
+- new complex attribute specifications (from my own wish list)
+
+Minor changes:
+- simplification of the inner workings of the methods _hasDOMChild()
+  and _getDOMChild()
+- using foreach($array as $key => $value) instead of
+  while(list($key, $value) = each($array))
+- now comes with 168 unit tests";s:1:"f";s:5:"72638";s:1:"g";s:43:"http://pear.php.net/get/XML_Query2XML-0.6.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.6.0.xml";}}}

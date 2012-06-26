@@ -1,0 +1,9 @@
+a:8:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.package";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:80:"http://pear.php.net/dtd/rest.package    http://pear.php.net/dtd/rest.package.xsd";}s:1:"n";s:11:"HTTP_Client";s:1:"c";s:12:"pear.php.net";s:2:"ca";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/c/HTTP";}s:8:"_content";s:4:"HTTP";}s:1:"l";s:3:"BSD";s:1:"s";s:68:"Easy way to perform multiple HTTP requests and process their results";s:1:"d";s:397:"The HTTP_Client class wraps around HTTP_Request and provides a higher level interface 
+for performing multiple HTTP requests.
+
+Features:
+* Manages cookies and referrers between requests
+* Handles HTTP redirection
+* Has methods to set default headers and request parameters
+* Implements the Subject-Observer design pattern: the base class sends 
+events to listeners that do the response processing.";s:1:"r";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/r/http_client";}}}

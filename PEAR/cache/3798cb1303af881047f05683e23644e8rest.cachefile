@@ -1,0 +1,36 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.0.0";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:57:"Provides missing functionality for older versions of PHP.";s:1:"d";s:567:"PHP_Compat provides missing functionality in the form of Constants and Functions for older versions of PHP.
+
+Constants:
+* E_STRICT
+* PATH_SEPARATOR
+* STDIN, STDOUT, STDERR
+* FILE_USE_INCLUDE_PATH, FILE_IGNORE_NEW_LINES, FILE_SKIP_EMPTY_LINES, FILE_APPEND, FILE_NO_DEFAULT_CONTEXT 
+
+Functions:
+* array_change_key_case
+* array_chunk
+* array_combine
+* array_diff_assoc
+* array_udiff
+* array_udiff_assoc
+* file_get_contents
+* file_put_contents
+* fprintf
+* http_build_query
+* is_a
+* scandir
+* str_ireplace
+* str_split
+* stripos
+* strripos
+* var_export
+* vprintf
+* vsprintf";s:2:"da";s:19:"2004-06-12 03:08:50";s:1:"n";s:196:"Added more components:
+* array_change_key_case
+* array_chunk
+* array_diff_assoc
+* vprintf
+* vsprintf
+* var_export
+
+Fixed behaviour of stripos/strripos - searches for whole needle (PHP5 behaviour).";s:1:"f";s:5:"14037";s:1:"g";s:40:"http://pear.php.net/get/PHP_Compat-1.0.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.0.0.xml";}}}

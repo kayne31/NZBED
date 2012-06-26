@@ -1,0 +1,15 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:7:"1.6.0a2";s:2:"st";s:5:"alpha";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:55:"Provides components to achieve PHP version independance";s:1:"d";s:173:"PHP_Compat provides drop-in functions and constants for compatibility with newer versions of PHP, enviroment emulation, and an API to allow for version indepedent authoring.";s:2:"da";s:19:"2008-11-24 05:02:31";s:1:"n";s:900:"* Fix Bug #11206: clone() bug [aidan]
+* Fix Bug #11631: Missing '}' in loadFunction() [aidan]
+* Fix Bug #12158: wrong function name [arpad]
+* Fix Bug #12301: Compat calls php 5 function [arpad]
+* Fix Bug #13018: Curly bracket missing [aidan]
+* Fix Bug #13165: array_fill() not matching output from V5.3.0-dev. [arpad]
+* Fix Bug #14138: htmlspecialchars_decode() converts irreversibly [arpad]
+* Fix Bug #14824: Invalid sections formats in test file(s) (unit tests) [arpad]
+* Fix Bug #14891: Parse error: syntax error, unexpected '}' in
+  /home/clockwerx/pear/PHP_Compat/Co [arpad]
+* Fix Bug #15119: Patch and tests for getopt() [aidan]
+* Implement Feature #11205: register globals SERVER not SESSION [arpad]
+* Implement Feature #12227: sys_get_temp_dir missing [aidan]
+* Implement Feature #13400: php_ini_loaded_file() [aidan]
+* Implement Feature #14687: htmlspecialchars missing 4th parameter [aidan]";s:1:"f";s:5:"65576";s:1:"g";s:42:"http://pear.php.net/get/PHP_Compat-1.6.0a2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"package.1.6.0a2.xml";}}}

@@ -1,0 +1,35 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/p/http_upload";}s:8:"_content";s:11:"HTTP_Upload";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:7:"1.0.0b1";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:7:"cweiske";s:1:"s";s:59:"Easy and secure managment of files submitted via HTML Forms";s:1:"d";s:491:"This class provides an advanced file uploader system for file uploads made
+from html forms. Features:
+ * Can handle from one file to multiple files.
+ * Safe file copying from tmp dir.
+ * Easy detecting mechanism of valid upload, missing upload or error.
+ * Gives extensive information about the uploaded file.
+ * Rename uploaded files in different ways: as it is, safe or unique
+ * Validate allowed file extensions
+ * Multiple languages error messages support (es, en, de, fr, it, nl, pt_BR)";s:2:"da";s:19:"2009-08-16 10:26:08";s:1:"n";s:1939:"QA release because of the sheer number of closed bugs:
+- Fix bug #2108: PEAR::Installer fails with bad MD5-sum [wenz]
+- Fix bug #2251: Wrong error message if file is larger than MAX_FILE_SIZE [antonio]
+- Fix bug #2291: typo in example and wrong return result of _evalValidExtensions() [antonio]
+- Fix bug #2383: Notice: Undefined variable: error in C:\php5\PEAR\HTTP\Upload.php on line 509 [antonio]
+- Fix bug #2949: Missing PEAR dep [wenz]
+- Fix bug #2950: Addition of chars in nameToSafe [wenz]
+- Fix bug #3624: CRITICAL: non-ISO-8859-1 characters in package.xml must be entitied [cweiske]
+- Fix bug #4318: file extension checking should not be case-sensitive [wenz]
+- Fix bug #4332: problem when using 2 instance of HTTP_Upload & 2 files [wenz]
+- Fix bug #4441: inaccurate error when uploading large file [antonio]
+- Fix bug #4995: missing return statement [wenz]
+- Fix bug #5536: No explanation of properties [wenz]
+- Fix bug #6678: Missing return statement in HTTP_Upload::isMissing() [wenz]
+- Fix bug #6752: 'Only variable references should be returned by reference' PHP notice [wenz]
+- Fix bug #6884: translations: Estonian and Russian [wenz]
+- Fix bug #6886: typo in code [arnaud]
+- Fix bug #7092: PHP5 notice Only variable references should be returned by reference [wenz]
+- Fix bug #7322: small parse error [wenz]
+- Fix bug #7499: Error in HTTP_Upload::isMissing() on determining uploaded files [wenz]
+- Fix bug #7861: Filenames with spaces in them get their names changed when being moved [cweiske]
+- Fix bug #8656: getFiles() generate error if one of uploaded files haven't been selected [wenz]
+- Fix bug #8658: Notice: Undefined property: _modeNameSeq in Upload.php on line 860 [wenz]
+- Fix bug #14677: Security issue due to seeding random number generator [wenz]
+- Fix bug #15003: Parse error in Upload.php [doconnor]
+- Detect ini file sizes with kilo- and gigabytes [avb]
+- Convert russian translation to HTML entities [avb]";s:1:"f";s:5:"12234";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Upload-1.0.0b1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"package.1.0.0b1.xml";}}}

@@ -1,0 +1,23 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/xml_query2xml";}s:8:"_content";s:13:"XML_Query2XML";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.6.1";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:11:"lukasfeiler";s:1:"s";s:33:"Creates XML data from SQL queries";s:1:"d";s:826:"XML_Query2XML allows you to transform the records retrieved
+with one or more SQL SELECT queries into XML data. Very simple to
+highly complex transformations are supported. Is was written with
+performance in mind and can handle large amounts of data. No XSLT needed!
+Major features:
+1. XML_Query2XML works with the classes provided by PHP5's DOM XML extension
+2. minimum effort necessary to get the simple jobs done
+3. highly configurable for more complex tasks
+4. ISO/IEC 9075-14:2005 support: mapping of SQL identifiers to XML names
+5. works with any database that is supported by PEAR DB or PEAR MDB2
+6. debugging and logging features
+7. provides profiling features
+8. in-depth documentation: tutorials and API documentation
+9. Eight case studies: from very simple to highly complex scenarios
+10. 168 unit tests for PHPUnit2";s:2:"da";s:19:"2006-09-28 06:29:33";s:1:"n";s:393:"This release fixes a minor bug with PHP5 prior to 5.1.0.
+Thanks a lot to Christophe Laratte <christophe dot laratte at openflyers dot org>
+for reporting this!
+
+Bug fixes:
+- Fixed Bug #8799 "DB/common.php required": compatibility fix for
+  PHP5 < 5.1.0: added class_exists() calls before using instanceof
+  operator in XML_Query2XML constructor;
+  see also: http://bugs.php.net/bug.php?id=29736";s:1:"f";s:5:"73604";s:1:"g";s:43:"http://pear.php.net/get/XML_Query2XML-0.6.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.6.1.xml";}}}

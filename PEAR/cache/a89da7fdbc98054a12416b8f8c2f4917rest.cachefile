@@ -1,0 +1,36 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/numbers_words";}s:8:"_content";s:13:"Numbers_Words";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:6:"0.16.2";s:2:"st";s:4:"beta";s:1:"l";s:11:"PHP License";s:1:"m";s:6:"kouber";s:1:"s";s:79:"The PEAR Numbers_Words package provides methods for spelling numerals in words.";s:1:"d";s:1459:"With Numbers_Words class you can convert numbers
+written in arabic digits to words in several languages.
+You can convert an integer between -infinity and infinity.
+If your system does not support such long numbers you can
+call Numbers_Words::toWords() with just a string.
+
+With the Numbers_Words::toCurrency($num, $locale, 'USD') method
+you can convert a number (decimal and fraction part) to words with currency name. 
+
+The following languages are supported:
+    * bg (Bulgarian) by Kouber Saparev
+    * cs (Czech) by Petr 'PePa' Pavel
+    * de (German) by Piotr Klaban
+    * dk (Danish) by Jesper Veggerby
+    * en_100 (Donald Knuth system, English) by Piotr Klaban
+    * en_GB (British English) by Piotr Klaban
+    * en_US (American English) by Piotr Klaban
+    * es (Spanish Castellano) by Xavier Noguer
+    * es_AR (Argentinian Spanish) by Martin Marrese
+    * et (Estonian) by Erkki Saarniit
+    * fr (French) by Kouber Saparev
+    * fr_BE (French Belgium) by Kouber Saparev and Philippe Bajoit
+    * he (Hebrew) by Hadar Porat
+    * hu_HU (Hungarian) by Nils Homp
+    * id (Indonesian) by Ernas M. Jamil and Arif Rifai Dwiyanto
+    * it_IT (Italian) by Filippo Beltramini and Davide Caironi
+    * lt (Lithuanian) by Laurynas Butkus
+    * nl (Dutch) by WHAM van Dinter
+    * pl (Polish) by Piotr Klaban
+    * pt_BR (Brazilian Portuguese) by Marcelo Subtil Marcal and Mario H.C.T.
+    * ru (Russian) by Andrey Demenev
+    * sv (Swedish) by Robin Ericsson";s:2:"da";s:19:"2010-05-10 11:14:48";s:1:"n";s:280:"* Fixed bug #16435 (improper use of substr() in Polish extension);
+* Fixed bug #16667 (wrong spelling of 40 in Hungarian extension) (Vlajos);
+* Fixed bug #16733 (incorrect rounding of cents);
+* Added optional dependency on Math_BigInteger;
+* Improved unit tests (Daniel O'Connor).";s:1:"f";s:5:"52956";s:1:"g";s:44:"http://pear.php.net/get/Numbers_Words-0.16.2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"package.0.16.2.xml";}}}

@@ -1,0 +1,61 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/p/mdb2";}s:8:"_content";s:4:"MDB2";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"2.4.1";s:2:"st";s:6:"stable";s:1:"l";s:11:"BSD License";s:1:"m";s:5:"quipo";s:1:"s";s:26:"database abstraction layer";s:1:"d";s:1379:"PEAR MDB2 is a merge of the PEAR DB and Metabase php database abstraction layers.
+
+It provides a common API for all supported RDBMS. The main difference to most
+other DB abstraction packages is that MDB2 goes much further to ensure
+portability. MDB2 provides most of its many features optionally that
+can be used to construct portable SQL statements:
+* Object-Oriented API
+* A DSN (data source name) or array format for specifying database servers
+* Datatype abstraction and on demand datatype conversion
+* Various optional fetch modes to fix portability issues
+* Portable error codes
+* Sequential and non sequential row fetching as well as bulk fetching
+* Ability to make buffered and unbuffered queries
+* Ordered array and associative array for the fetched rows
+* Prepare/execute (bind) named and unnamed placeholder emulation
+* Sequence/autoincrement emulation
+* Replace emulation
+* Limited sub select emulation
+* Row limit emulation
+* Transactions/savepoint support
+* Large Object support
+* Index/Unique Key/Primary Key support
+* Pattern matching abstraction
+* Module framework to load advanced functionality on demand
+* Ability to read the information schema
+* RDBMS management methods (creating, dropping, altering)
+* Reverse engineering schemas from an existing database
+* SQL function call abstraction
+* Full integration into the PEAR Framework
+* PHPDoc API documentation";s:2:"da";s:19:"2007-05-03 14:55:12";s:1:"n";s:2022:"- fixed bug #10407: propagate errors in MDB2_Statement_Common::execute()
+- fixed bug #10452: error in getDeclaration() with custom datatype_map and no
+  datatype_map_callback function
+- fixed bug #10521: quote($val,'decimal') and quote($val,'float') pass unsafe characters
+- return length as "precision,scale" for NUMERIC and DECIMAL fields in mapNativeDatatype()
+- fixed bug #10537: safer check for valid MDB2 connection in singleton() [fornax]
+- fixed bug #10598: MDB2::singleton() not working in some rare conditions [fornax]
+- in getTableIndexDefinition() and getTableConstraintDefinition() in the Reverse
+  module, also return the field position in the index/constraint
+- exec() now returns a reference instead of a copy to prevent memory leaks
+- request #10787: MDB2_Driver_Common::$phptype and $dbsyntax properties are now public
+
+open todo items:
+- handle autoincrement fields in alterTable()
+- add length handling to LOB reverse engineering
+- add EXPLAIN abstraction
+- add cursor support along the lines of PDO (Request #3660 etc.)
+- add PDO based drivers, especially a driver to support SQLite 3 (Request #6907)
+- add support to export/import in CSV format
+- add more functions to the Function module (MD5(), IFNULL(), LENGTH() etc.)
+- add support for database/table/row LOCKs
+- add support for FOREIGN KEYs and CHECK (ENUM as possible mysql fallback) constraints
+- generate STATUS file from test suite results and allow users to submit test results
+- add support for full text index creation and querying
+- add tests to check if the RDBMS specific handling with portability options
+  disabled behaves as expected
+- handle implicit commits (like for DDL) in any affected driver (mysql, sqlite..)
+- add a getTableFieldsDefinitions() method to be used in tableInfo()
+- drop ILIKE from matchPattern() and instead add a second parameter to
+  handle case sensitivity with arbitrary operators
+- add charset and collation support to field declaration in all drivers
+- handle LOBs in buffered result sets (Request #8793)";s:1:"f";s:6:"119790";s:1:"g";s:34:"http://pear.php.net/get/MDB2-2.4.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.2.4.1.xml";}}}

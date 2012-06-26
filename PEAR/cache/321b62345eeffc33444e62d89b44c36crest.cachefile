@@ -1,0 +1,35 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:12:"/rest/p/pear";}s:8:"_content";s:4:"PEAR";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.9.1";s:2:"st";s:6:"stable";s:1:"l";s:15:"New BSD License";s:1:"m";s:5:"dufuz";s:1:"s";s:16:"PEAR Base System";s:1:"d";s:1100:"The PEAR package contains:
+ * the PEAR installer, for creating, distributing
+   and installing packages
+ * the PEAR_Exception PHP5 error handling mechanism
+ * the PEAR_ErrorStack advanced error handling mechanism
+ * the PEAR_Error error handling mechanism
+ * the OS_Guess class for retrieving info about the OS
+   where PHP is running on
+ * the System class for quick handling of common operations
+   with files and directories
+ * the PEAR base class
+  Features in a nutshell:
+  * full support for channels
+  * pre-download dependency validation
+  * new package.xml 2.0 format allows tremendous flexibility while maintaining BC
+  * support for optional dependency groups and limited support for sub-packaging
+  * robust dependency support
+  * full dependency validation on uninstall
+  * remote install for hosts with only ftp access - no more problems with
+    restricted host installation
+  * full support for mirroring
+  * support for bundling several packages into a single tarball
+  * support for static dependencies on a url-based package
+  * support for custom file roles and installation tasks";s:2:"da";s:19:"2010-05-26 20:47:28";s:1:"n";s:1111:"* svntag improvements, tag package files passed into the command and better directory checks [dufuz]
+* rely on Structures_Graph minimum version instead of recommended version [saltybeagle]
+* Fix Bug #12613: running go-pear.phar from C:\ fails [dufuz]
+* Fix Bug #14841: Installing pear into directory with space fails [dufuz]
+* Fix Bug #16644: pear.bat returns syntax error when parenthesis are in install path. [dufuz] [patch by bwaters (Bryan Waters)]
+* Fix Bug #16767: Use of Depreciated HTML Attributes in the Exception class [dufuz] [patch by fuhrysteve (Stephen J. Fuhry)]
+* Fix Bug #16864: "pear list-upgrades -i" issues E_WARNINGS [dufuz] [patch by rquadling (Richard Quadling)]
+* Fix Bug #17220: command `pear help` outputs to stderr instead of stdout [dufuz]
+* Fix Bug #17234: channel-discover adds port to HTTP Host header [dufuz]
+* Fix Bug #17292: Code Coverage in PEAR_RunTest does not work with namespaces [sebastian]
+* Fix Bug #17359: loadExtension() fails over missing dl() when used in multithread env [dufuz]
+* Fix Bug #17378: pear info $package fails if directory with that name exists [dufuz]";s:1:"f";s:6:"293587";s:1:"g";s:34:"http://pear.php.net/get/PEAR-1.9.1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.9.1.xml";}}}

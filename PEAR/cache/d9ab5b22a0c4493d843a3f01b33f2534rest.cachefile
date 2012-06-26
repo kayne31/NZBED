@@ -1,0 +1,1 @@
+s:206:"a:1:{s:8:"required";a:3:{s:3:"php";a:2:{s:3:"min";s:3:"5.1";s:3:"max";s:5:"6.0.0";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.1";}s:9:"extension";a:2:{s:4:"name";s:7:"php-gtk";s:3:"min";s:8:"2.0.0dev";}}}";

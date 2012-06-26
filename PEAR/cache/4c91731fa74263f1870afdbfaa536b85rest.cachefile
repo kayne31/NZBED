@@ -1,0 +1,12 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.1.0";s:2:"st";s:6:"stable";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:57:"Provides missing functionality for older versions of PHP.";s:1:"d";s:131:"PHP_Compat provides missing functionality in the form of Constants and Functions and Enviroment settings for older versions of PHP.";s:2:"da";s:19:"2004-06-25 21:35:30";s:1:"n";s:207:"Added more components:
+* html_entity_decode
+* version_compare
+* image_type_to_mime_type
+* array_key_exists
+* array_search
+* call_user_func_array
+* constant
+* ob_clean
+* ob_flush
+* ob_get_clean
+* ob_get_flush";s:1:"f";s:5:"20181";s:1:"g";s:40:"http://pear.php.net/get/PHP_Compat-1.1.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.1.0.xml";}}}

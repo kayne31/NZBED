@@ -1,0 +1,52 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"/rest/p/php_compat";}s:8:"_content";s:10:"PHP_Compat";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:7:"1.6.0a1";s:2:"st";s:5:"alpha";s:1:"l";s:11:"PHP License";s:1:"m";s:5:"aidan";s:1:"s";s:55:"Provides components to achieve PHP version independance";s:1:"d";s:173:"PHP_Compat provides drop-in functions and constants for compatibility with newer versions of PHP, enviroment emulation, and an API to allow for version indepedent authoring.";s:2:"da";s:19:"2007-05-08 10:16:40";s:1:"n";s:2801:"Added more components:
+* array_fill
+* Hyperbolic and inverse hyperbolic math functions
+* glob
+* is_callable
+Added more components with changed parameters:
+* array_splice
+* microtime
+* mkdir
+* range
+* setcookie
+* setrawcookie
+
+Added new Environment module
+* register_globals
+* magic_quotes_gpc
+* magic_quotes_sybase
+* register_argc_argv
+* register_long_arrays
+Changed the way PHP_Compat stores functions.
+* Function declaration is prefixed with php_compat_
+* Dummy declaration calls php_compat_ function
+  This allows for redefinition of functions with changed parameters.
+Added support for packages which modify the function tables at runtime
+* PHP_Compat::loadFunction now tries to rename the old function on load
+  This further supports redefinition of functions with changed parameters.
+* Fix Bug #1956: stripos - not returning false [aidan]
+* Fix Bug #3190: [PATCH] md5_file() depends on possibly nonexistent file_get_contents() [aidan]
+* Fix Bug #3572: Use of addslashes() adds too much backslashes [aidan]
+* Fix Bug #3586: bug in str_word_count.php code [aidan]
+* Fix Bug #4605: debug_print_backtrace - Object to string conversion [aidan]
+* Fix Bug #4851: var_export severely broken! (new implementation attached) [aidan]
+* Fix Bug #6293: array_intersect_key produces incorrect results with more than 2 arguments [arpad]
+* Fix Bug #6560: missing 'Function/property_exists.php' when installed with pear [aidan]
+* Fix Bug #6687: array_intersect_key() fails due to func_get_args() [arpad]
+* Fix Bug #6758: notice errors with debug_print_backtrace and call_user_func_array usage [arpad]
+* Fix Bug #6922: Space after php close markup in Function/mime_content_type.php [arpad]
+* Fix Bug #7520: cyclic reference cloning causes timeout [aidan]
+* Fix Bug #8338: convert_uudecode removes spaces from line ends, causing corruption [aidan]
+* Fix Bug #8864: magic quotes gpc emulation missing server vars [arpad]
+* Fix Bug #9042: Various uninitialized variables [aidan]
+* Fix Bug #9043: Various issues in str_shuffle [aidan]
+* Fix Bug #9687: array_*_key function(s) slow [aidan]
+* Fix Bug #9983: Function [array_udiff_uassoc()] is incorrectly implemented [arpad]
+* Implement Feature #4372: addition of glob() function for php < 4.3.0 [arpad]
+* Implement Feature #7139: PHP 5.1.1 Datetime Constants [arpad]
+* Implement Feature #7403: str_ireplace too slow [arpad]
+* Implement Feature #7414: making var_export() generating correct PHP code with nested objects [arpad]
+* Implement Feature #8208: is_callable missing in php 4.0.4, 4.0.5 [arpad]
+* Implement Feature #9187: Adding httponly to setcookie/setrawcookie (new in php 5.2) [aidan]
+* Implement Feature #9659: The userdata parameter isn't correctly send to the recursive call [arpad]
+* Implement Feature #10177: add most recent UPLOAD ERR constants [arpad]";s:1:"f";s:5:"60125";s:1:"g";s:42:"http://pear.php.net/get/PHP_Compat-1.6.0a1";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"package.1.6.0a1.xml";}}}

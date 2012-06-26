@@ -1,0 +1,12 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:15:"/rest/p/net_url";}s:8:"_content";s:7:"Net_URL";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:6:"1.0.15";s:2:"st";s:6:"stable";s:1:"l";s:3:"BSD";s:1:"m";s:6:"davidc";s:1:"s";s:20:"Easy parsing of Urls";s:1:"d";s:58:"Provides easy parsing of URLs and their constituent parts.";s:2:"da";s:19:"2007-06-28 10:58:22";s:1:"n";s:707:"- Fixed Bug #11385 $url was defined.
+- Fixed Doc #11017 Fixed docblock problem (cweiske) 
+- Fixed Bug #11008 (Override object properties in initialize())
+- Fixed Bug #6338 Wrong query string handling
+- Fixed Bug #704  Fixed hardcoded value and use ini_get(arg_separator)
+- Fixed Bug #1036 Improper default port number detection
+- Fixed Bug #1447 use $_SERVER instead of HTTP_SERVER_VARS
+- Fixed Bug #1558 _parseRawQueryString failed if arg_sep.input was more than 1 char.
+- Fixed Bug #1682 File was in DOC format rather than Unix
+- Fixed Bug #2334 Sqare brackets in var names were encoded
+- Fixed Bug #2824 Better error handling support.
+- Fixed bug #3159 setProtocol was calling getStandardPort incorrectly";s:1:"f";s:4:"6303";s:1:"g";s:38:"http://pear.php.net/get/Net_URL-1.0.15";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:18:"package.1.0.15.xml";}}}

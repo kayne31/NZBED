@@ -1,0 +1,10 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"/rest/p/http_upload";}s:8:"_content";s:11:"HTTP_Upload";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:7:"1.0.0b2";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:8:"doconnor";s:1:"s";s:59:"Easy and secure managment of files submitted via HTML Forms";s:1:"d";s:491:"This class provides an advanced file uploader system for file uploads made
+from html forms. Features:
+ * Can handle from one file to multiple files.
+ * Safe file copying from tmp dir.
+ * Easy detecting mechanism of valid upload, missing upload or error.
+ * Gives extensive information about the uploaded file.
+ * Rename uploaded files in different ways: as it is, safe or unique
+ * Validate allowed file extensions
+ * Multiple languages error messages support (es, en, de, fr, it, nl, pt_BR)";s:2:"da";s:19:"2010-10-05 16:15:05";s:1:"n";s:32:"QA release
+Bug #17787 avoid ereg";s:1:"f";s:5:"13906";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Upload-1.0.0b2";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:19:"package.1.0.0b2.xml";}}}

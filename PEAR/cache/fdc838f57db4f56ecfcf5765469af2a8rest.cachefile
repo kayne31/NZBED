@@ -1,0 +1,19 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_request2";}s:8:"_content";s:13:"HTTP_Request2";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.5.0";s:2:"st";s:5:"alpha";s:1:"l";s:11:"BSD License";s:1:"m";s:3:"avb";s:1:"s";s:46:"Provides an easy way to perform HTTP requests.";s:1:"d";s:468:"PHP5 rewrite of HTTP_Request package. Provides cleaner API and pluggable
+Adapters. Currently available are:
+  * Socket adapter, based on old HTTP_Request code,
+  * Curl adapter, wraps around PHP's cURL extension,
+  * Mock adapter, to use for testing packages dependent on HTTP_Request2.
+Supports POST requests with data and file uploads, basic and digest 
+authentication, cookies, proxies, gzip and deflate encodings, monitoring 
+the request progress with Observers...";s:2:"da";s:19:"2009-11-18 18:36:25";s:1:"n";s:767:"* Redirect support added, new configuration parameters 'follow_redirects',
+  'max_redirects' and 'strict_redirects' available
+
+* Implemented workaround for PHP bug #47204, Curl Adapter can now handle
+  Digest authentication and redirects when doing POST requests, unfortunately
+  this requires loading the entire request body into memory.
+* Config parameter 'use_brackets' is propagated to created instances of Net_URL2
+* Prevent memory leaks due to circular references (request #16646)
+* Fixed a misleading error message when timing out due to default_socket_timeout
+* HTTP_Request2::setBody() can now accept an instance of HTTP_Request2_MultipartBody
+  without trying to convert it to string
+* Calling HTTP_Request2::setBody() now clears post parameters and uploads";s:1:"f";s:5:"57903";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Request2-0.5.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.5.0.xml";}}}

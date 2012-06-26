@@ -1,0 +1,15 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:20:"/rest/p/http_request";}s:8:"_content";s:12:"HTTP_Request";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.3.0";s:2:"st";s:6:"stable";s:1:"l";s:3:"BSD";s:1:"m";s:3:"avb";s:1:"s";s:45:"Provides an easy way to perform HTTP requests";s:1:"d";s:114:"Supports GET/POST/HEAD/TRACE/PUT/DELETE, Basic authentication, Proxy,
+Proxy Authentication, SSL, file uploads etc.";s:2:"da";s:19:"2005-11-06 14:03:45";s:1:"n";s:881:"* All request and response headers are now treated case-insensitively,
+  per RFC 2616 (bug #1045, bug #4367).
+* Values of multiple response headers with the same name are combined
+  into a comma-separated string per RFC 2616 (bug #1045)
+* Generate proper closing boundary for multipart/form-data requests,
+  per RFC 1521 (bug #4397)
+* magic_quotes_runtime directive is switched off when performing the
+  request since it may break file uploads and chunked responses (bug #4543)
+* Response::_readChunked() will finish on zero-length chunk rather than 
+  socket eof (patch from bug #3037)
+* Added HTTP_Request::setBody() method, deprecated addRawPostData() due to
+  misleading name. The request body will be sent with all request methods
+  except those that explicitly forbid this (e.g. TRACE). Data set via
+  addPostData() / addFile() will only be sent with POST (see request #4716)";s:1:"f";s:5:"13808";s:1:"g";s:42:"http://pear.php.net/get/HTTP_Request-1.3.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.3.0.xml";}}}

@@ -1,0 +1,30 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/xml_query2xml";}s:8:"_content";s:13:"XML_Query2XML";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"0.7.0";s:2:"st";s:4:"beta";s:1:"l";s:4:"LGPL";s:1:"m";s:11:"lukasfeiler";s:1:"s";s:33:"Creates XML data from SQL queries";s:1:"d";s:833:"XML_Query2XML allows you to transform the records retrieved
+with one or more SQL SELECT queries into XML data. Very simple to
+highly complex transformations are supported. Is was written with
+performance in mind and can handle large amounts of data. No XSLT needed!
+Major features:
+1. XML_Query2XML works with the classes provided by PHP5's DOM XML extension
+2. minimum effort necessary to get the simple jobs done
+3. highly configurable for more complex tasks
+4. ISO/IEC 9075-14:2005 support: mapping of SQL identifiers to XML names
+5. works with any database that is supported by PEAR DB, PEAR MDB2 or ADOdb
+6. debugging and logging features
+7. provides profiling features
+8. in-depth documentation: tutorials and API documentation
+9. Eight case studies: from very simple to highly complex scenarios
+10. 378 unit tests for PHPUnit2";s:2:"da";s:19:"2006-10-14 15:46:10";s:1:"n";s:823:"This release adds support for ADOdb (adodb.sf.net).
+ADOdb can be used with different error handling mechanisms:
+- default: methods return false on failure; these errors
+  will be caught by XML_Query2XML and an XML_Query2XML_DBException
+  will be thrown
+- PEAR_Error: methods return PEAR_Error on failure (or false
+  and require ADODB_Pear_Error() to be called);
+  XML_Query2XML will catch these errors and throw an
+  XML_Query2XML_DBException that contains the information provided
+  by the PEAR_Error instance.
+- exceptions: if an ADODB_Exception is thrown by ADOdb
+  XML_Query2XML will catch it and throw an XML_Query2XML_DBException
+
+This means that no matter which error handling mechanism is used within
+ADOdb, XML_Query2XML will behave the same. It will throw an
+XML_Query2XML_DBException in case of a database error.";s:1:"f";s:6:"100640";s:1:"g";s:43:"http://pear.php.net/get/XML_Query2XML-0.7.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.7.0.xml";}}}

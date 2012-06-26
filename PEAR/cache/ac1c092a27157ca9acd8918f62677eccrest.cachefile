@@ -1,0 +1,11 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_download";}s:8:"_content";s:13:"HTTP_Download";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:3:"0.4";s:2:"st";s:4:"beta";s:1:"l";s:3:"PHP";s:1:"m";s:4:"mike";s:1:"s";s:19:"Send HTTP Downloads";s:1:"d";s:273:"Provides an easy interface to send hidden files or any arbitrary data to the client over HTTP. It features HTTP Caching, Compression and Ranges (partial downloads and resuming).
+
+NOTE:
+Don't use with PHP's on-the-fly output compression, because files may be sent corrupted.";s:2:"da";s:19:"2003-11-25 13:50:22";s:1:"n";s:662:"* Bugfix (HTTP): 'Last-Modified' was sent as unix timestamp instead of HTTP date
+* Bugfix (HTTP Range): conditional GET requests didn't come through because of wrong 'Last-Modified'
+* Bugfix (HTTP Range): 'Content-Length' MUST contain the ACTUAL length of the body
+* Bugfix (HTTP Range): 'Content-Range' was sent incorrectly (though Apache usually overrules that)
+* Bugfix (HTTP Range): 'HTTP 200 Ok' was sent instead of 'HTTP 206 Partial Content' (though Apache usually overrules that)
+
+* Modified the PCRE of setContentType() to allow additions like '; charset=UTF-8'
+* Added a check if ext/mime_magic is configured with a valid filename (avoiding fatal error)";s:1:"f";s:4:"5463";s:1:"g";s:41:"http://pear.php.net/get/HTTP_Download-0.4";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:15:"package.0.4.xml";}}}

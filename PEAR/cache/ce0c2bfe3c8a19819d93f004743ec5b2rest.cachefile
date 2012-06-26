@@ -1,0 +1,36 @@
+a:14:{s:7:"attribs";a:4:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:11:"xmlns:xlink";s:28:"http://www.w3.org/1999/xlink";s:18:"xsi:schemaLocation";s:81:"http://pear.php.net/dtd/rest.release     http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:21:"/rest/p/http_download";}s:8:"_content";s:13:"HTTP_Download";}s:1:"c";s:12:"pear.php.net";s:1:"v";s:5:"1.1.0";s:2:"st";s:6:"stable";s:1:"l";s:12:"BSD, revised";s:1:"m";s:4:"mike";s:1:"s";s:19:"Send HTTP Downloads";s:1:"d";s:473:"Provides an interface to easily send hidden files or any arbitrary data to 
+HTTP clients.  HTTP_Download can gain its data from variables, files or
+stream resources.
+
+It features:
+ - Basic caching capabilities
+ - Basic throttling mechanism
+ - On-the-fly gzip-compression
+ - Ranges (partial downloads and resuming)
+ - Delivery of on-the-fly generated archives through Archive_Tar and Archive_Zip
+ - Sending of PgSQL LOBs without the need to read all data in prior to sending";s:2:"da";s:19:"2005-11-14 07:04:36";s:1:"n";s:980:"1.1.0-stable:
+=============
+* Fixed bug #5949: pass-by-reference error
+- Changed license to BSD
+
+RC3:
+====
+* Added missing support to set 'max age' for cache control through constructor and setParams()
+* Added missing support to set 'send 404' for missing files through constructor and setParams()
++ Added public sentBytes property, containing the amount of bytes (body only) sent to the client
+
+RC2:
+====
+* Added missing support for proprietary Unless-Modified-Since header (IE)
++ Improved comparisons of last modification date
++ Implemeted modified Request #4754; possibility to define max-age cache control parameter
+
+RC1:
+====
+* Fixed bug #4343: usleep() was called with milliseconds instead of microseconds
+  if throttling was enabled
+* Fixed bug #4049: fatal error if a non-existant file was specified in
+  constructor parameters
+
++ Implemented request #3283 - try to use MIME_Type to guess content type
++ Implemented request #3960 - allow zlib.output_compression in php.ini";s:1:"f";s:5:"12339";s:1:"g";s:43:"http://pear.php.net/get/HTTP_Download-1.1.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.1.1.0.xml";}}}
