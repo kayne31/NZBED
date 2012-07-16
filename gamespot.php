@@ -38,23 +38,36 @@ class gamespot
 	var $_def = array(
 		'url' => array(
 			'search' => 'http://www.google.com/search?hl=en&q=%s+site:gamespot.com&btnI=I\'m+Feeling+Lucky',
-			'game' => 'http://www.gamespot.com/%s',
-			'details' => 'http://www.gamespot.com/%stech_info.html'
+			'search2' => 'http://www.gamespot.com/search/?qs=%s',
+			'game' => '%s',
+			'details' => '%stechinfo/'
 		),
 		'regex' => array(
 			'url' => array(
-				'/<a href="http:\/\/.+?\.gamespot\.com\/(.+\/.+\/.+\/).*?">here<\/A>/i'
+				//'/<a href="http:\/\/.+?\.gamespot\.com\/(.+\/.+\/.+\/).*?">here<\/A>/i',
+				'/"http:\/\/www.gamespot.com\/[a-zA-Z\-0-9]+\/"/i'
 				//'/<p><b>Popular Titles<\/b> \(Displaying \d+ Results?\)<ol><li>\s*<a href="\/title\/([^\/]+)\//i',
 				//'/<p><b>Titles \(Exact Matches\)<\/b> \(Displaying \d+ Results?\)<ol><li>\s*<a href="\/title\/([^\/]+)\//i',
 				//'/<p><b>Titles \(Partial Matches\)<\/b> \(Displaying \d+ Results?\)<ol><li>\s*<a href="\/title\/([^\/]+)\//i'
 				),
+			'direct' => array(
+			'/<div class=\"result_title\"><a href=\"[a-z]+:\/\/[a-z\.]+\/[a-z_\-\.0-9]+\/">.+?<\/a>/i'
+			),
 			'game' => array(
-				'title' => '/<div class="wrap">\s*<h2 class="module_title">(.+?)<\/h2>\s*<\/div>/i',
+				//'title' => '/<div class="wrap">\s*<h2 class="module_title">(.+?)<\/h2>\s*<\/div>/i',
+				'title' => '/<meta\sproperty="og:title"\scontent="([a-z\s\.\-#&;:,0-9!\?]+)"\s\/>/i',
 				'year' => '/<dt>Release Date:<\/dt>\s*<dd>\s*\w+\s+\d+,\s(\d{4})/i',
-				'genre' => '/<div class="pt5">\s+Genre: <a href=".+?" class=".+?">(.+)<\/a>\s+<\/div>/i',
+				'year1' => '/<li class="date"><div class="statWrap"><span class="label">Release Date: <\/span><span class="data">\s*\w+\s+\d+,\s(\d{4})/i',
+				'year2' => '/<li class=\"date\"><div class=\"statWrap\"><span class=\"label\">Release:\s<\/span><span class=\"data\"><a href=\".+?">\s*\w+\s+\d+,\s(\d{4})/i',
+				'year3' => '/<li class=\"date\"><div class=\"statWrap\"><span class=\"label\">Release:\s<\/span><span class=\"data\"><span>\s*\w+\s+\d+,\s(\d{4})/i',
+				'year4' => '/<li class=\"date\"><div class=\"statWrap\"><span class=\"label\">Release:\s<\/span><span class=\"data\"><span>\s*\w+\s+(\d{4})/i',
+				'year5' => '/<li class=\"date\"><div class=\"statWrap\"><span class=\"label\">Release:\s<\/span><span class=\"data\"><a href=\".+?">\s*\w+\s+(\d{4})/i',
+				//'genre' => '/<div class="pt5">\s+Genre: <a href=".+?" class=".+?">(.+)<\/a>\s+<\/div>/i',
+				'genre' => '/Genre:.+?<a href=".+?title=".+?">(.+?)</i',
 				'rating' =>	'/<dl class="main_score">\s+<dt><a href="[^"]+">([0-9.]+)<\/a><\/dd>/i',
 				'description' => '/<p class="review deck">(.+)<\/p>\s+<p>/i',
-				'platform' => '/^([^\/]+?)\//i',
+				'platform' => '/<ul\sclass=\"platformFilter.+?}\">All\sPlatforms.+?(xbox360\/|pc\/|ps3\/|wii\/)">(\w+)<\/a>/i',
+				'platform1' => '/<ul\sclass=\"platformFilter.+?>All\sPlatforms.+?{.+?}">(\w+)</i',
 				'class' => '/^[^\/]+\/([^\/]+)\//i'
 			),
 		),
@@ -126,28 +139,45 @@ class gamespot
 		
 		if ( $this->debug ) echo 'Query: '.$query." \n";
 
-		// find game
+		// find game google search first
 		$url = sprintf( $this->_def['url']['search'], urlencode(strtolower($query)) );
 		if ( ( $page = $this->getUrl( $url ) ) !== false )
 		{
 			foreach( $this->_def['regex']['url'] as $regex )
 			{
 				if ( preg_match( $regex, $page, $gsUrl) )
-				{
-					if ( $this->debug ) echo 'gsUrl: '.$gsUrl[1]." \n";
+				{ 
+					if ( $this->debug ) echo 'gsUrl: '.$gsUrl[0]." \n";
+					$gsUrl[0] = str_replace("\"","",$gsUrl[0]);
+					if ( $this->debug ) echo 'gsUrl: '.$gsUrl[0]." \n";
 					if ( $nRows >= 1 )
-						$api->db->update( 'gamespot_search', array( 'gsUrl' => $gsUrl[1] ), array( 'search' => $query ), __FILE__, __LINE__ );
+						$api->db->update( 'gamespot_search', array( 'gsUrl' => $gsUrl[0] ), array( 'search' => $query ), __FILE__, __LINE__ );
 					else
-						$api->db->insert( 'gamespot_search', array( 'gsUrl' => $gsUrl[1], 'search' => $query ), __FILE__, __LINE__ );
-					return $gsUrl[1];
+						$api->db->insert( 'gamespot_search', array( 'gsUrl' => $gsUrl[0], 'search' => $query ), __FILE__, __LINE__ );
+					return $gsUrl[0];
 				}
 			}
-			return false;
 		}
-		else
+		//Couldn't find link via google so searching Gamespot direct
+			$url = sprintf( $this->_def['url']['search2'], urlencode(strtolower($query)) );
+			if ( ( $page = $this->getUrl( $url ) ) !== false )
 		{
-			return false;
+			foreach( $this->_def['regex']['direct'] as $regex )
+			{
+				if ( preg_match( $regex, $page, $gsUrl) )
+				{
+					//Cleanup url from regex grab
+					$gsUrl[0] = preg_replace("/<div class=\"result_title\"><a href=\"/i","",$gsUrl[0]);
+					$gsUrl[0] = preg_replace("/\".*/i","",$gsUrl[0]);
+					if ( $nRows >= 1 )
+						$api->db->update( 'gamespot_search', array( 'gsUrl' => $gsUrl[0] ), array( 'search' => $query ), __FILE__, __LINE__ );
+					else
+						$api->db->insert( 'gamespot_search', array( 'gsUrl' => $gsUrl[0], 'search' => $query ), __FILE__, __LINE__ );
+					return $gsUrl[0];
+				}
+			}
 		}
+		return false;// could not find any match
 	}
 
 	function getSGame( $query, $ignoreCache = false )
@@ -163,10 +193,10 @@ class gamespot
 	}
 
 	/**
-	 * Get Film
+	 * Get Game
 	 *
-	 * @param string $tvin - tvrage showID
-	 * @return array - Show information
+	 * @param string $gsUrl - Gamespot URL
+	 * @return array - Game information
 	 * @access public
 	 */
 	function getGame( $gsUrl, $ignoreCache = false )
@@ -189,26 +219,38 @@ class gamespot
 		}
 			
 		$url = sprintf( $this->_def['url']['game'], $gsUrl );
-		$durl = sprintf( $this->_def['url']['details'], $gsUrl );
-		if ( ( ( $page = $this->getUrl( $url, true ) ) !== false ) &&
-		     ( ( $details = $this->getUrl( $durl, true ) ) !== false ) )
+		//can get all information from the main gamespot page
+		if ( ( ( $page = $this->getUrl( $url, true ) ) !== false ) )
 		{
 			preg_match( $this->_def['regex']['game']['title'], $page, $title );
-			preg_match( $this->_def['regex']['game']['year'], $details, $year );
-			preg_match( $this->_def['regex']['game']['genre'], $details, $genre );
-			preg_match( $this->_def['regex']['game']['platform'], $gsUrl, $platform );
-			preg_match( $this->_def['regex']['game']['class'], $gsUrl, $class );
-						
+			//Checks each year for a match Gamespot has many
+			if(!preg_match( $this->_def['regex']['game']['year'], $page, $year ))
+			{		
+				if(!preg_match( $this->_def['regex']['game']['year1'], $page, $year )){
+					if(!preg_match( $this->_def['regex']['game']['year2'], $page, $year )){
+						if(!preg_match( $this->_def['regex']['game']['year3'], $page, $year )){
+							if(!preg_match( $this->_def['regex']['game']['year4'], $page, $year )){
+								preg_match( $this->_def['regex']['game']['year5'], $page, $year );
+							}
+						}
+					}
+				}
+			}
+			preg_match( $this->_def['regex']['game']['genre'], $page, $genre );
+			if(!preg_match( $this->_def['regex']['game']['platform'], $page, $platform )){
+				preg_match( $this->_def['regex']['game']['platform1'], $page, $platform );
+				$platform[2] = $platform[1];
+			}
+			//preg_match( $this->_def['regex']['game']['class'], $gsUrl, $class );
 			$game = array(
 				'gsUrl' => $gsUrl,
-				'title' => $api->stringDecode( $title[1] ),
-				'genre' => trim( $api->stringDecode( $genre[1] ).' '.$class[1] ),
+				'title' => $title[1] ,
+				'genre' => trim( $genre[1] ),
 				'year' => $api->stringDecode( $year[1] ),
-				'platform' => $platform[1],
+				'platform' => $platform[2],
 				'url' => $url );
 
 			if ( $this->debug ) var_dump( $game );
-			
 			if ( empty( $game['title'] ) )
 			{
 				if ( $nRows >= 1 )
