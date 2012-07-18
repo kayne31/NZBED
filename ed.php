@@ -141,7 +141,7 @@ class ed
 				'1080i' => '/1080i/i',
 				'1080p' => '/1080p/i',
 				),
-			'Audio' => array( 
+				'Audio' => array( 
 				'AC3/DD' => '/(ac3|dd[25]\.?[01]|5\.1)/i',
 				'dts' => '/dts/i',
 				'MP3' => '/mp3/i',
