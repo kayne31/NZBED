@@ -35,7 +35,7 @@ class ed
 			'url' => array(
 				'tvrage' => '/^(?:http:\/\/)?(?:www\.)?tvrage\.com\/(.+?)\/episodes\/(\d+)/i',
 				'imdb' => '/^(?:http:\/\/)?(?:www\.)?imdb\.com\/title\/(tt\d+)/i',
-				'gamespot' => '/^(?:http:\/\/)?.+?\.gamespot\.com\/(.+\/.+\/.+\/)/i',
+				'gamespot' => '/^(?:http:\/\/)?.+?\.gamespot\.com\/[a-z-0-10]+\//i',
 				'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/([^\/]+)/i',
         'anidb' => '/^(?:http:\/\/)?(?:www\.)?anidb.net\/(?:perl-bin\/animedb.pl?show=anime&aid=)?(a?\d+)/i',
 				'gm' => '/^(?:http:\/\/)?(?:www\.)?google\.com\/musicl\?lid=(.+?)(?:&aid=.+?)?$/i',
@@ -105,7 +105,7 @@ class ed
 		'getPart' => '/^(.+) \(Part (\d+)\)$/i',
 		'attributes' => array(
 			'Region' => array(
-				'NTSC' => '/\b(ntsc|usa)\b/i',
+				'NTSC' => '/\b(ntsc|usa|jpn)\b/i',
 				'PAL' => '/\b(pal|eur)\b/i',
 				'SECAM' => '/\bsecam\b/i'
 				),
@@ -231,16 +231,18 @@ class ed
 				'Documentary' => 'Documentary'
 				),
 			'gamegenre' => array(
-				'sports' => 'Sport',
-				'action' => 'Action',
+				'Sports' => 'Sport',
+				'Action' => 'Action',
 				'First-Person' => 'FPS',
-				'driving' => 'Racing',
+				'Driving' => 'Racing',
 				'rpg' => 'RPG',
-				'strategy' => 'Strategy',
-				'puzzle' => 'Puzzle',
-				'adventure' => 'Adventure',
+				'Role-Playing' => 'RPG',
+				'Strategy' => 'Strategy',
+				'Puzzle' => 'Puzzle',
+				'Adventure' => 'Adventure',
 				'sim' => 'Simulator',
-				'Sim' => 'Simulator'
+				'Sim' => 'Simulator',
+				'Simulation' => 'Simulator'
 				),
 			'consoleplatform' => array(
 				'xbox360' => 'Xbox360',
@@ -909,19 +911,7 @@ class ed
 	
 	function tvNewSEp( $show, $series, $episode, $u2t = true )
 	{
-		if ( $u2t )
-		{
-			if ( empty( $show->usenetToTvrage ) )
-				return array( $series, $episode );
-			parse_str( $show->usenetToTvrage, $parse );
-		}
-		else
-		{
-			if ( empty( $show->tvrageToNewzbin ) )
-				return array( $series, $episode );		
-			parse_str( $show->tvrageToNewzbin, $parse );
-		}
-		
+			
 		foreach( $parse['a'] as $arr )
 		{
 			if ( ( ( substr( $arr['series'], 0, 1 ) == '>' ) && 
@@ -1505,7 +1495,7 @@ class ed
 		// check for a url
 		if ( preg_match( $this->_def['info']['url']['gamespot'], $string, $matches ) )
 		{
-			if ( ( $game = $api->game->getGame( $matches[1], $this->ignoreCache ) ) !== false )
+			if ( ( $game = $api->game->getGame( $matches[0], $this->ignoreCache ) ) !== false )
 			{
 				return $this->gameGetReport( $game, $report );
 			}
@@ -1565,15 +1555,12 @@ class ed
 			}
 		}
 		
+		$gTitle = preg_replace("/(xbox360|PS3|xbox|NTSC|PAL|EUR|JPN|readnfo|xgd3|repack|jtag)/i","",$gTitle);
 		$gTitle = trim( str_replace( $this->_def['strip'], ' ', $gTitle ) );
 		
 		while( strcmp( $gTitle, $old ) != 0 )
 		{
-			// check if a console platform is found and append to title
-			if ( isset( $tAppr ) )
-				$tmpTitle = $gTitle.' '.$tAppr;
-			else
-				$tmpTitle = $gTitle.( ( $type == 4 )? ' PC':'');
+			$tmpTitle = $gTitle;
 			
 			if ( ( $game = $api->game->getSGame( $tmpTitle, $this->ignoreCache ) ) !== false )
 			{
@@ -1641,24 +1628,21 @@ class ed
 			}
 		}
 									
-		$genres = explode( ' ', $game->genre );
+		$genre = $game->genre;
 		
-		foreach( $genres as $id => $gen )
-		{
-			if ( isset( $this->_def['siteAttributes']['gamegenre'][$gen] ) )
+			if ( isset( $this->_def['siteAttributes']['gamegenre'][$genre] ) )
 			{
-				$this->addAttr( $report, $report['category'], 'GameGenre', $this->_def['siteAttributes']['gamegenre'][$gen] );
+				$this->addAttr( $report, $report['category'], 'GameGenre', $this->_def['siteAttributes']['gamegenre'][$genre] );
 			}
 			else
 			{
-				$this->addAttr( $report, $report['category'], 'GameGenre', $gen );
+				$this->addAttr( $report, $report['category'], 'GameGenre', $genre );
 			}
-		}
+		
 		
 		if ( ( !$this->ids ) &&
 			 ( is_array( $report['attributes']['GameGenre'] ) ) )
 			sort( $report['attributes']['GameGenre'] );
-		
 		return $report;	
 	}
 	
