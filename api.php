@@ -1,7 +1,7 @@
 <?php
 
 
-$path = 'localhost/nzbed/pear';
+$path = './PEAR/';
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 ini_set("display_errors", 0);
@@ -11,10 +11,9 @@ require_once( INCLUDEPATH.'ed.php' );
 require_once( INCLUDEPATH.'tvrage.php' );
 require_once( INCLUDEPATH.'imdb.php' );
 require_once( INCLUDEPATH.'gamespot.php' );
-require_once( INCLUDEPATH.'allmusic.php' );
 require_once( INCLUDEPATH.'anidb.php' );
-require_once( INCLUDEPATH.'gm.php' );
 require_once( INCLUDEPATH.'tmdb.php' );
+require_once( INCLUDEPATH.'rovi.php' );
 
 require_once( 'XML/Serializer.php' );
 
@@ -26,11 +25,10 @@ class api
 	var $tvrage;
 	var $imdb;
 	var $game;
-	var $amg;
-	var $gm;
-    var $anidb;
+	var $anidb;
 	var $xml;
 	var $tmdb;
+	var $rovi;
 
 	function api( $ids, $cache )
 	{
@@ -41,10 +39,9 @@ class api
 		$this->tvrage = new tvrage();
 		$this->imdb = new imdb();
 		$this->game = new gamespot();
-		$this->amg = new amg();
-		$this->gm = new gm();
-        $this->anidb = new anidb();
+		$this->anidb = new anidb();
 		$this->tmdb = new tmdb();
+		$this->rovi = new rovi();
 		
 	 	$options = array(
 			XML_SERIALIZER_OPTION_INDENT           => '    ',
@@ -172,7 +169,7 @@ if ( isset( $_REQUEST['q'] ) )
 	$myFile = "testFile.txt";
 /* $fh = fopen($myFile, 'a') or die("can't open file");
 fwrite($fh, $api->toXML( $arr ));
-fclose($fh); */
+fclose($fh);*/ 
 
 }
 

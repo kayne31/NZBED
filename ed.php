@@ -36,13 +36,13 @@ class ed
 							'tvrage' => '/^(?:http:\/\/)?(?:www\.)?tvrage\.com\/(.+?)\/episodes\/(\d+)/i',
 							'imdb' => '/^(?:http:\/\/)?(?:www\.)?imdb\.com\/title\/(tt\d+)/i',
 							'gamespot' => '/^(?:http:\/\/)?.+?\.gamespot\.com\/[a-z-0-10]+\//i',
-							'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/([^\/]+)/i',
+							'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/([^\/]+(mw\d+))/i',
 							'anidb' => '/^(?:http:\/\/)?(?:www\.)?anidb.net\/(?:perl-bin\/animedb.pl?show=anime&aid=)?(a?\d+)/i',
 							'gm' => '/^(?:http:\/\/)?(?:www\.)?google\.com\/musicl\?lid=(.+?)(?:&aid=.+?)?$/i',
 					),
 					'isTV' => '/^(.+?)(?<!the)(?:\.|\s|\s-\s|\(|\[|\_|\-|)(?:\(|\[|\_|\-)?((?:s|series|season|seizoen|saison|staffel)?\s?(?:\.|\_|\-)?\s?([0-9]+?),?\s?\.?(?:e|x|ep|episode|d|dvd|disc|disk|\-)(?!264)\s?(?:\.|\_|\-)?\s?([0-9]{2,3})(?![0-9]+)|(\d{2,4})\.(\d{2})\.(\d{2,4}))(?:\.|\s\-\s|\s|\)|\]|\_|\-)?(.*)$/i',
 					//			'TV' => array(
-							//				'/^(.+?)(?<!the)(?:\.|\s|\s-\s|\(|\[|\_|\-|)(?:\(|\[|\_|\-)?(?:(?:\.|\s|\-)s|series|season)?\s?(?:\.|\_|\-)?\s?([0-9]{1,2}?)(?:,|\-)?\s?\.?(?:e|x|ep|episode)(?!264)\s?([0-9]+)(?![0-9]+)(?:\.|\s\-\s|\s|\)|\]|\_|\-)?(.*)$/i',
+					//				'/^(.+?)(?<!the)(?:\.|\s|\s-\s|\(|\[|\_|\-|)(?:\(|\[|\_|\-)?(?:(?:\.|\s|\-)s|series|season)?\s?(?:\.|\_|\-)?\s?([0-9]{1,2}?)(?:,|\-)?\s?\.?(?:e|x|ep|episode)(?!264)\s?([0-9]+)(?![0-9]+)(?:\.|\s\-\s|\s|\)|\]|\_|\-)?(.*)$/i',
 	//				'/^(.+?)(?<!the)(?:\.|\s|\s-\s|\(|\[|\_|\-|)(?:\(|\[|\_|\-)?(?:(?:\.|\s|\-)s|series|season)?\s?(?:\.|\_|\-)?\s?([0-9]{1,2}),?\s?\.?(?:\-|e|x|ep|episode)?\s?([0-9]{2})(?![0-9]+)(?:\.|\s\-\s|\s|\)|\]|\_|\-)?(.*)$/i',
 	//				),
 	//			'TVMulti' => array(
@@ -673,7 +673,7 @@ class ed
 			preg_match_all( $this->_def['info']['TVMsplit'], $typematches['Multi'][3], $epList );
 
 			if ( $this->debug ) print_r( $epList );
-				
+
 			if ( count( $epList[1] ) == 0 )
 			{
 				if ( $this->debug ) printf(" no episode range found, not Multi\n");
@@ -727,7 +727,7 @@ class ed
 		if ( ( $show = $api->tvrage->getFShow( $showquery, $this->ignoreCache ) ) !== false )
 		{
 			if ( $this->debug ) var_dump( $show );
-				
+
 			if ( $mUsed == 'Date' )
 			{
 				if ( $matches[2] >= 100 )
@@ -761,7 +761,7 @@ class ed
 					return $this->tvGetReportDate( $show, $ep, $matches[5] );
 				}
 			}
-				
+
 			else if ( $mUsed == 'TV' )
 			{
 					
@@ -1434,26 +1434,26 @@ class ed
 
 		$fTitle = trim( str_replace( $this->_def['strip'], ' ', $fTitle ) );
 		if($this->dontusetmdb){
-		while( strcmp( $fTitle, $old ) != 0 )
-		{
-			if ( ( $film = $api->imdb->getSFilm( $fTitle, $this->ignoreCache ) ) !== false )
-			{
-				return $this->filmGetReport( $film, $report );
-			}
-			$old = $fTitle;
-			$fTitle = preg_replace( '/\s+\S+$/i', '', $fTitle );
-		}
-		$this->_error = 'Could not find a matching film';
-		return false;
-		}else{// using tmdb
 			while( strcmp( $fTitle, $old ) != 0 )
 			{
-				 if ( ( $film = $api->tmdb->getSFilm( $fTitle, $this->ignoreCache ) ) !== false )
+				if ( ( $film = $api->imdb->getSFilm( $fTitle, $this->ignoreCache ) ) !== false )
 				{
 					return $this->filmGetReport( $film, $report );
 				}
 				$old = $fTitle;
-				$fTitle = preg_replace( '/\s+\S+$/i', '', $fTitle ); 
+				$fTitle = preg_replace( '/\s+\S+$/i', '', $fTitle );
+			}
+			$this->_error = 'Could not find a matching film';
+			return false;
+		}else{// using tmdb
+			while( strcmp( $fTitle, $old ) != 0 )
+			{
+				if ( ( $film = $api->tmdb->getSFilm( $fTitle, $this->ignoreCache ) ) !== false )
+				{
+					return $this->filmGetReport( $film, $report );
+				}
+				$old = $fTitle;
+				$fTitle = preg_replace( '/\s+\S+$/i', '', $fTitle );
 			}
 			$this->_error = 'Could not find a matching film';
 			return false;
@@ -1478,7 +1478,7 @@ class ed
 		}
 		else
 		{
-				
+
 			$report['title'] = $movieTitle;
 			$report['url'] = $film->url;
 			$report['category'] = 'Movies';
@@ -1583,7 +1583,7 @@ class ed
 		while( strcmp( $gTitle, $old ) != 0 )
 		{
 			$tmpTitle = $gTitle;
-				
+
 			if ( ( $game = $api->game->getSGame( $tmpTitle, $this->ignoreCache ) ) !== false )
 			{
 				return $this->gameGetReport( $game, $report );
@@ -1682,7 +1682,7 @@ class ed
 				$rString = $this->_def['report']['category']['Music'].$this->_def['report']['attributeGroups'][$attr];
 				foreach( $array as $id => $reg )
 				{
-						
+
 					if ( substr( $reg, 0, 1 ) == '!' )
 					{
 						// denote a negative regex
@@ -1704,87 +1704,36 @@ class ed
 
 
 
-		// check for a url
-		if ( preg_match( $this->_def['info']['url']['gm'], $string, $matches ) )
-		{
-			if ( ( $album = $api->gm->getAlbum( $matches[1], $this->ignoreCache ) ) !== false )
-			{
-				// search for episode properties
-				return $this->musicGetReport( $album, $report );
-			}
-			else
-			{
-				if ( !isset( $api->gm->error ) )
-					$this->_error = sprintf( 'Invalid google music albumID: %s', $matches[1] );
-				else
-					$this->_error = $api->gm->error;
-				return false;
-			}
-		}
 
 
 		if ( preg_match( $this->_def['info']['url']['amg'], $string, $matches ) )
 		{
-			if ( ( $album = $api->amg->getAlbum( $matches[1], $this->ignoreCache ) ) !== false )
+			if ( ( $album = $api->rovi->getAlbumfromurl( $matches[2], $this->ignoreCache ) ) !== false )
 			{
 				// search for episode properties
 				return $this->musicGetReport( $album , $report);
 			}
 			else
 			{
-				$this->_error = sprintf( 'Invalid allmusic albumID: %s', $matches[1] );
+				$this->_error = sprintf( 'Invalid allmusic albumID: %s', $matches[2] );
 				return false;
 			}
 		}
 
-		if ( isset( $this->_def['info']['Music'] ) )
-		{
-			foreach( $this->_def['info']['Music'] as $reg )
-			{
-				if ( preg_match( $reg, $string, $matches ) )
-				{
-					$matched = true;
-					break;
-				}
-			}
-		}
-
-		if ( $matched )
-		{
-
-			$artist = str_replace( $this->_def['strip'], ' ', $matches[1] );
-			$album = str_replace( $this->_def['strip'], ' ', $matches[2] );
-
-			if ( ( $album = $api->amg->getSAlbum( $artist, $album, $this->ignoreCache ) ) !== false )
-			{
-				return $this->musicGetReport( $album, $report );
-			}
-			else
-			{
-				if ( isset( $api->amg->error ) )
-					$tmperror = $api->amg->error;
-			}
-		}
 
 
-		// try google music
+		
 		$query = str_replace( $this->_def['strip'], ' ', $string );
-		if ( ( $album = $api->gm->getSAlbum( $query, $this->ignoreCache ) ) !== false )
+
+		if ( ( $album = $api->rovi->getSAlbum( $query, $this->ignoreCache ) ) !== false )
 		{
-			return $this->musicGetReport( $album );
+			return $this->musicGetReport( $album, $report );
 		}
 		else
 		{
-			if ( isset( $api->gm->error ) )
-				$this->_error = $api->gm->error;
-			else
-				$this->_error = $tmperror;
-
-			return false;
+			$this->_error = 'Can\'t find Album';
+				return false;
 		}
-
-
-
 	}
 
 	function musicGetReport( $album, $tmp )
@@ -1799,7 +1748,7 @@ class ed
 				$report[$this->_def['report']['fields']['title']] = sprintf( '%s - %s (%d)', $album->artist, $album->title, $album->year );
 			else
 				$report[$this->_def['report']['fields']['title']] = sprintf( '%s - %s', $album->artist, $album->title );
-				
+
 			$report[$this->_def['report']['fields']['url']] = $album->url;
 			$report[$this->_def['report']['fields']['category']] = $this->_def['report']['category']['Music'];
 		}
@@ -2112,7 +2061,7 @@ class ed
 		{
 			//$rString = $this->_def['report']['category'][$cat].$this->_def['report']['attributeGroups'][$attr];
 			$rString = $this->_def['report']['attributeGroups'][$attr];
-				
+
 			if ( $val === false )
 				unset( $report['attributes'][$rString] );
 			else if ( ( $key = array_search( $this->_def['report']['attributeID'][$attr][$val], $report['attributes'][$rString] ) ) !== false )
