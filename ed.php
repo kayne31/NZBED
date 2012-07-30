@@ -223,7 +223,7 @@ class ed
 	'Music' => 'Musical',
 	//'Politics' => 'Documentary',
 	'Religion' => 'Family',
-	'Science Fiction' => 'SciFi',
+	'Science Fiction' => 'Sci-Fi',
 	'Soaps' => 'Comedy',
 	'Sports' => 'Sport',
 	'Sporting Event' => 'Sport',
