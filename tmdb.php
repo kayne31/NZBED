@@ -112,7 +112,7 @@ class tmdb{
 		// find film
 		$squery="query=".urlencode($query);
 		if ( $this->_debug ) printf( "url: %s \n", $squery );
-		$results = $this->_call("search/movie",$squery,$lang);
+		$results = $this->_call("search/movie",$squery,"en");
 		if($results['results'][0]['id'] != ''){
 			if ( $nRows >= 1 ){
 				$api->db->update( 'tmdb_search', array( 'tmdbID' => $results['results'][0]['id'] ), array( 'search' => $query ), __FILE__, __LINE__ );

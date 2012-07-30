@@ -38,7 +38,7 @@ class ed
 							'gamespot' => '/^(?:http:\/\/)?.+?\.gamespot\.com\/[a-z-0-10]+\//i',
 							'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/([^\/]+(mw\d+))/i',
 							'anidb' => '/^(?:http:\/\/)?(?:www\.)?anidb.net\/(?:perl-bin\/animedb.pl?show=anime&aid=)?(a?\d+)/i',
-							'gm' => '/^(?:http:\/\/)?(?:www\.)?google\.com\/musicl\?lid=(.+?)(?:&aid=.+?)?$/i',
+							'tmdb' => '/^(?:http:\/\/)?(?:www\.)?themoviedb\.org\/movie\/(\d+)/i',
 					),
 					'isTV' => '/^(.+?)(?<!the)(?:\.|\s|\s-\s|\(|\[|\_|\-|)(?:\(|\[|\_|\-)?((?:s|series|season|seizoen|saison|staffel)?\s?(?:\.|\_|\-)?\s?([0-9]+?),?\s?\.?(?:e|x|ep|episode|d|dvd|disc|disk|\-)(?!264)\s?(?:\.|\_|\-)?\s?([0-9]{2,3})(?![0-9]+)|(\d{2,4})\.(\d{2})\.(\d{2,4}))(?:\.|\s\-\s|\s|\)|\]|\_|\-)?(.*)$/i',
 					//			'TV' => array(
@@ -513,8 +513,10 @@ class ed
 	 * Main functions
 	*****************************************************/
 
-	function Query( $string, $type = false )
+	function Query( $string, $type = false, $tmdb = false )
 	{
+		//set if movie whether to use tmdb or imdb
+		$this->dontusetmdb = $tmdb;
 		// let check it against known urls
 		if ( $this->debug ) echo 'Query: '.$string."\n";
 
@@ -1375,6 +1377,19 @@ class ed
 		if ( preg_match( $this->_def['info']['url']['imdb'], $string, $matches ) )
 		{
 			if ( ( $film = $api->imdb->getFilm( $matches[1], $this->ignoreCache ) ) !== false )
+			{
+				return $this->filmGetReport( $film, $report );
+			}
+			else
+			{
+				$this->_error = 'Could not get film ID: '.$matches[1];
+				return false;
+			}
+		}
+		
+		if ( preg_match( $this->_def['info']['url']['tmdb'], $string, $matches ) )
+		{
+			if ( ( $film = $api->tmdb->getFilm( $matches[1], $this->ignoreCache ) ) !== false )
 			{
 				return $this->filmGetReport( $film, $report );
 			}

@@ -56,9 +56,9 @@ class api
 		$this->xml = new XML_Serializer( $options );
 	}
 	
-	function getInfo( $string, $type )
+	function getInfo( $string, $type, $tmdb = false )
 	{
-		if ( ( $report = $this->ed->Query( $string, $type ) ) === false )
+		if ( ( $report = $this->ed->Query( $string, $type, $tmdb ) ) === false )
 		{
 			$report = array(
 				'error' => $this->ed->_error
@@ -163,7 +163,7 @@ if ( isset( $_REQUEST['q'] ) )
 
 	header( 'Content-type: text/xml' );
 
-	$arr = $api->getInfo( $_REQUEST['q'], $_REQUEST['t'] );
+	$arr = $api->getInfo( $_REQUEST['q'], $_REQUEST['t'], $_REQUEST['m']);
 
 	echo $api->toXML( $arr );
 	$myFile = "testFile.txt";
