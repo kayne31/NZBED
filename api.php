@@ -1,7 +1,7 @@
 <?php
 
 
-$path = 'root/to/pear';
+$path = 'localhost/nzbed/pear';
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 ini_set("display_errors", 0);
@@ -14,6 +14,7 @@ require_once( INCLUDEPATH.'gamespot.php' );
 require_once( INCLUDEPATH.'allmusic.php' );
 require_once( INCLUDEPATH.'anidb.php' );
 require_once( INCLUDEPATH.'gm.php' );
+require_once( INCLUDEPATH.'tmdb.php' );
 
 require_once( 'XML/Serializer.php' );
 
@@ -29,6 +30,7 @@ class api
 	var $gm;
     var $anidb;
 	var $xml;
+	var $tmdb;
 
 	function api( $ids, $cache )
 	{
@@ -42,6 +44,7 @@ class api
 		$this->amg = new amg();
 		$this->gm = new gm();
         $this->anidb = new anidb();
+		$this->tmdb = new tmdb();
 		
 	 	$options = array(
 			XML_SERIALIZER_OPTION_INDENT           => '    ',
@@ -153,10 +156,12 @@ class api
         return FALSE;
     } //code2utf()
 }
+//print "start";
+
 
 if ( isset( $_REQUEST['q'] ) )
 {
-
+	//print_r($_REQUEST['q']);
 	$api = new api($_REQUEST['i'], $_REQUEST['c']);
 
 	header( 'Content-type: text/xml' );
@@ -164,6 +169,10 @@ if ( isset( $_REQUEST['q'] ) )
 	$arr = $api->getInfo( $_REQUEST['q'], $_REQUEST['t'] );
 
 	echo $api->toXML( $arr );
+	$myFile = "testFile.txt";
+/* $fh = fopen($myFile, 'a') or die("can't open file");
+fwrite($fh, $api->toXML( $arr ));
+fclose($fh); */
 
 }
 
