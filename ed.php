@@ -36,7 +36,7 @@ class ed
 							'tvrage' => '/^(?:http:\/\/)?(?:www\.)?tvrage\.com\/(.+?)\/episodes\/(\d+)/i',
 							'imdb' => '/^(?:http:\/\/)?(?:www\.)?imdb\.com\/title\/(tt\d+)/i',
 							'gamespot' => '/^(?:http:\/\/)?.+?\.gamespot\.com\/[a-z-0-10]+\//i',
-							'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/([^\/]+(mw\d+))/i',
+							'amg' => '/^(?:http:\/\/)?(?:www\.)?allmusic.com\/album\/.*(mw\d+)/i',
 							'anidb' => '/^(?:http:\/\/)?(?:www\.)?anidb.net\/(?:perl-bin\/animedb.pl?show=anime&aid=)?(a?\d+)/i',
 							'tmdb' => '/^(?:http:\/\/)?(?:www\.)?themoviedb\.org\/movie\/(\d+)/i',
 					),
@@ -1723,7 +1723,7 @@ class ed
 
 		if ( preg_match( $this->_def['info']['url']['amg'], $string, $matches ) )
 		{
-			if ( ( $album = $api->rovi->getAlbumfromurl( $matches[2], $this->ignoreCache ) ) !== false )
+			if ( ( $album = $api->rovi->getAlbumfromurl( isset($matches[2])?$matches[2]:$matches[1], $this->ignoreCache ) ) !== false )
 			{
 				// search for episode properties
 				return $this->musicGetReport( $album , $report);

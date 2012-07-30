@@ -102,6 +102,10 @@ class rovi
 				{
 					return false;
 				}
+				if ($album['artist'] === 'Various Artists')
+				{
+					$album['artist'] = 'VA';
+				}
 				if ( empty( $album['year'] ) )
 				{
 					$album['year'] = 0;
@@ -146,6 +150,10 @@ class rovi
 				if ( empty( $album['title'] ) )
 				{
 					return false;
+				}
+				if ($album['artist'] === 'Various Artists')
+				{
+					$album['artist'] = 'VA';
 				}
 				if ( empty( $album['year'] ) )
 				{
