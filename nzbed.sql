@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `tib_nzbed`
+-- Database: `nzbed`
 --
 
 -- --------------------------------------------------------
@@ -72,6 +72,37 @@ CREATE TABLE IF NOT EXISTS `allmusic_artistsearch` (
   PRIMARY KEY  (`ID`),
   KEY `search` (`search`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `music_search`
+--
+
+DROP TABLE IF EXISTS `music_search`;
+CREATE TABLE IF NOT EXISTS `music_search` (
+  `search` varchar(255) NOT NULL,
+  `albumID` varchar(255) NOT NULL,
+  PRIMARY KEY (`search`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `music_album`
+--
+
+DROP TABLE IF EXISTS `music_album`;
+CREATE TABLE IF NOT EXISTS `music_album` (
+  `albumID` varchar(255) NOT NULL DEFAULT '',
+  `artist` varchar(255) NOT NULL DEFAULT '',
+  `artistID` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `year` mediumint(9) NOT NULL DEFAULT '0',
+  `genre` text NOT NULL,
+  `url` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`albumID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
 
 -- --------------------------------------------------------
 
@@ -189,6 +220,7 @@ CREATE TABLE IF NOT EXISTS `imdb_film` (
   `year` mediumint(9) NOT NULL default '0',
   `genre` varchar(255) NOT NULL default '',
   `url` varchar(255) NOT NULL default '',
+  `aka` varchar(255) NOT NULL,
   PRIMARY KEY  (`filmID`),
   KEY `imdbID` (`imdbID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
@@ -284,3 +316,36 @@ CREATE TABLE IF NOT EXISTS `tvrage_show` (
   PRIMARY KEY  (`showID`),
   KEY `tvrageTextID` (`tvrageShowID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmdb_search`
+--
+
+DROP TABLE IF EXISTS `tmdb_search`;
+CREATE TABLE IF NOT EXISTS `tmdb_search` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `search` varchar(255) NOT NULL DEFAULT '',
+  `tmdbID` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmdb_film`
+--
+
+DROP TABLE IF EXISTS `tmdb_film`;
+CREATE TABLE IF NOT EXISTS `tmdb_film` (
+  `filmID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tmdbID` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `year` mediumint(9) NOT NULL DEFAULT '0',
+  `genre` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `aka` varchar(255) NOT NULL,
+  PRIMARY KEY (`filmID`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8
+
