@@ -13,7 +13,7 @@ class tmdb{
 			'year' => array(
 					'/(19\d{2})|(20\d{2})/'
 					),
-			'regex' => array(
+			'filter' => array(
 					'/\b(ntsc|usa|jpn)\b/i',
 					'/\b(pal|eur)\b/i',
 					'/\bsecam\b/i',
@@ -73,16 +73,22 @@ class tmdb{
 	);
 
 	var $_debug = false;
-
+	
+	function filter( $search )
+	{
+		foreach ($this->_def['filter'] as $filter){
+			$search = preg_replace($filter,"",$search);
+			//if($this->_debug) printf( "query during: %s - regex:%s \n", $search,$filter );
+		}
+		return $search;
+	}
+	
 	function getSFilm( $query, $ignoreCache = false )
 	{
 		if($this->_debug) printf( "query before: %s \n", $query );
-		foreach ($this->_def['regex'] as $catregex){
-			$query = preg_replace($catregex,"",$query);
-			//if($this->_debug) printf( "query during: %s - regex:%s \n", $query,$catregex );
-		}
-		if($this->_debug) printf( "query after: %s \n", $query );
-		if ( ( $tmdbID = $this->findFilm( $query, $ignoreCache ) ) !== false )
+		$filteredquery = $this->filter( $query );
+		if($this->_debug) printf( "query after: %s \n", $filteredquery );
+		if ( ( $tmdbID = $this->findFilm( $filteredquery, $ignoreCache ) ) !== false )
 		{
 			return $this->getFilm( $tmdbID, $ignoreCache );
 		}
@@ -143,7 +149,7 @@ class tmdb{
 			return $row;
 		}
 		 	
-		$query="movie/".urlencode($tmdbID);
+		$query="movie/".$tmdbID;
 		
 		if ( $this->_debug ) printf( "url: %s \n", $query );
 		$movie= $this->_call($query,"");
@@ -168,6 +174,12 @@ class tmdb{
 		}
 
 		$film['title'] = str_replace( '"','',$film['title'] );
+		
+		if(isset($movie['imdb_id']))
+		{
+			$api->imdb->getFilm($movie['imdb_id']);
+		}
+		
 		if ( $nRows >= 1 )
 			$api->db->update( 'tmdb_film', $film, array( 'filmID' => $row->filmID ), __FILE__, __LINE__ );
 		else

@@ -51,7 +51,7 @@ class imdb
 				//'/<p><b>Titles \(Partial Matches\)<\/b> \(Displaying \d+ Results?\)<ol><li>\s*<a href="\/title\/([^\/]+)\//i'
 				),
 			'film' => array(
-				'title' => '/<meta property=\"og:title\" content=\"(.*?)(\(\d+\))\"\/>/i',
+				'title' => '/<meta property=\"og:title\" content=\"(.*?)(\((?:TV\s)?\d+\))\"\/>/i',
 				'rating' => '/<span class="rating-rating">([0-9\.]+)<span>/i',
 				//'genreContainer' => '/<div class="see-more inline canwrap">\s*<h4 class="inline">Genres:</h4>\s*(.+?)<\/div>/i',
 				'genre' => '/href="\/genre\/(.*?)"/iS',
@@ -228,7 +228,7 @@ class imdb
 			}
 			$genStr = ( count( $genre ) > 0 )? implode( ', ', $genre ):'';
 		
-			
+			stristr($title[2],"TV ") ? $title[2]=str_replace("TV ", "", $title[2]) : //if TV Movie remove the TV part
 			$film = array(
 				'imdbID' => $imdbID,
 				'title' => substr($api->stringDecode( $title[1]),0),
@@ -282,73 +282,6 @@ class imdb
 			return $titles;
 		}
 	
-	}
-	
-	
-	
-	function GetCastAndCrew( $obj )
-	{
-		global $api;
-		
-		// check cache
-		$res = $api->db->select( '*', 'imdb_crew', array( 'imdbID' => $obj->imdbID ), __FILE__, __LINE__ );
-																											 
-		$nRows = $api->db->rows( $res );
-			
-		$cast = array();
-			
-		if ( ( $useCache ) && ( $nRows > 0 ) )
-		{
-			// return cache select
-			while ( $row = $api->db->fetch( $res ) )
-			{
-				$obj->crew[] = array(
-					'name' => $row->name,
-					'role' => $row->role,
-					'generalrole' => $row->generalrole,
-					'url' => $row->url,
-				);
-			}				
-		}
-		else
-		{
-			$page = $this->getUrl( sprintf( $this->_def['url']['credits'], $obj->imdbID ) );
-			
-			// cast search
-			if ( preg_match_all( $this->_def['regex']['crew'], $page, $matches ) > 0 )
-			{
-				if ( $this->debug ) print_r( $matches );
-				
-				// clear cache
-				$api->db->delete( 'imdb_crew', array( 'imdbID' => $obj->imdbID ), __FILE__, __LINE__ );
-				
-				$role = '';
-				
-				for( $i = 0; $i < count( $matches[0] ); $i++ )
-				{
-					// 1: role
-					// 2: nameID
-					// 3: name
-					// 4: specificrole
-					
-					if ( $matches[1][$i] != '' )
-						$role = $matches[1][$i];
-					
-					$a = array(
-						'role' => $role,
-						'url' => sprintf( $this->_def['url']['nameid'], $matches[2][$i] ),
-						'name' => $matches[3][$i],
-						'specificrole' => $matches[4][$i],
-					);
-					
-					$obj->crew[] = $a;
-					
-					$a['imdbID'] = $obj->imdbID;
-					
-					$api->db->insert( 'imdb_crew', $a, __FILE__, __LINE__ );
-				}
-			}
-		}
 	}	
 }
 

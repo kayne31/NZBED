@@ -19,14 +19,14 @@ require_once( 'XML/Serializer.php' );
 
 class api
 {
-
+	var $xml;
+	
 	var $db;
 	var $ed;
 	var $tvrage;
 	var $imdb;
 	var $game;
 	var $anidb;
-	var $xml;
 	var $tmdb;
 	var $rovi;
 
@@ -56,9 +56,9 @@ class api
 		$this->xml = new XML_Serializer( $options );
 	}
 	
-	function getInfo( $string, $type, $tmdb = false )
+	function getInfo( $string, $cat, $tmdb )
 	{
-		if ( ( $report = $this->ed->Query( $string, $type, $tmdb ) ) === false )
+		if ( ( $report = $this->ed->Query( $string, $cat, $tmdb ) ) === false )
 		{
 			$report = array(
 				'error' => $this->ed->_error
@@ -70,7 +70,7 @@ class api
 			if ( $this->db->rows( $exist ) == 0 )
 			{
 				$data = array(
-					'type' => $type,
+					'type' => $cat,
 					'query' => $string,
 					'error' => $this->ed->_error,
 					'IP' => $_SERVER['REMOTE_ADDR'],
@@ -159,17 +159,17 @@ class api
 if ( isset( $_REQUEST['q'] ) )
 {
 	//print_r($_REQUEST['q']);
-	$api = new api($_REQUEST['i'], $_REQUEST['c']);
+	$api = new api( isset($_REQUEST['i']) ? $_REQUEST['i'] : false, isset($_REQUEST['c']) ? $_REQUEST['c'] : false);
 
 	header( 'Content-type: text/xml' );
 
-	$arr = $api->getInfo( $_REQUEST['q'], $_REQUEST['t'], $_REQUEST['m']);
+	$arr = $api->getInfo( $_REQUEST['q'], isset($_REQUEST['t']) ? $_REQUEST['t'] : false, isset($_REQUEST['m']) ? $_REQUEST['m'] : false);
 
 	echo $api->toXML( $arr );
 	$myFile = "testFile.txt";
 /* $fh = fopen($myFile, 'a') or die("can't open file");
 fwrite($fh, $api->toXML( $arr ));
-fclose($fh);*/ 
+fclose($fh);*/
 
 }
 
