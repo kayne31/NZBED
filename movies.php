@@ -43,7 +43,7 @@ class movies{
 					'/psp/i',
 					'/\b(ipod|iphone|itouch)\b/i',
 					'/(ac3d|ac3|dd[25]\.?[01]|5\.1)/i',
-					'/dts/i',
+					'/(dtshd|dts)/i',
 					'/mp3/i',
 					'/aac/i',
 					'/\bogg\b/i',
@@ -64,7 +64,9 @@ class movies{
 					'/proper.+/i',
 					'/iNTERNAL.*/',
 					'/WS/',
-					'/HR/'
+					'/HR/',
+					'/3d/i',
+					'/H-SBS/'
 					)
 			)
 	);
@@ -155,7 +157,7 @@ class movies{
 	{
 		global $ed;
 		$report = array();
-		if($film->aka && ($film->title != $film->aka)){
+		if($film->aka && (trim($film->title) != trim($film->aka))){
 			$movieTitle=sprintf( '%s (%s) (%d)', $film->aka ,$film->title, $film->year );
 		}
 		else

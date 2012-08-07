@@ -22,56 +22,35 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `allmusic_album`
+-- Table structure for table `discogs_album`
 --
 
-DROP TABLE IF EXISTS `allmusic_album`;
-CREATE TABLE IF NOT EXISTS `allmusic_album` (
-  `albumID` int(10) unsigned NOT NULL auto_increment,
-  `amgalbumID` varchar(255) NOT NULL default '',
-  `artist` varchar(255) NOT NULL default '',
-  `amgartistID` varchar(255) NOT NULL default '',
-  `title` varchar(255) NOT NULL default '',
-  `year` mediumint(9) NOT NULL default '0',
+DROP TABLE IF EXISTS `discogs_album`;
+CREATE TABLE `discogs_album` (
+  `albumID` varchar(255) NOT NULL DEFAULT '',
+  `artist` varchar(255) NOT NULL DEFAULT '',
+  `artistID` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `year` mediumint(9) NOT NULL DEFAULT '0',
   `genre` text NOT NULL,
-  `url` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`albumID`),
-  KEY `amgalbumID` (`amgalbumID`),
-  KEY `amgartistID` (`amgartistID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+  `type` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`albumID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `allmusic_albumsearch`
+-- Table structure for table `discogs_search`
 --
 
-DROP TABLE IF EXISTS `allmusic_albumsearch`;
-CREATE TABLE IF NOT EXISTS `allmusic_albumsearch` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `amgartistID` varchar(255) NOT NULL default '',
-  `search` varchar(255) NOT NULL default '',
-  `amgalbumID` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`ID`),
-  KEY `search` (`search`),
-  KEY `amgartistID` (`amgartistID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `allmusic_artistsearch`
---
-
-DROP TABLE IF EXISTS `allmusic_artistsearch`;
-CREATE TABLE IF NOT EXISTS `allmusic_artistsearch` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `search` varchar(255) NOT NULL default '',
-  `amgartistID` varchar(255) NOT NULL default '',
-  `famgartistID` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`ID`),
-  KEY `search` (`search`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `discogs_search`;
+CREATE TABLE `discogs_search` (
+  `search` varchar(255) NOT NULL,
+  `albumID` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`search`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 
 -- --------------------------------------------------------
 
@@ -171,42 +150,6 @@ CREATE TABLE IF NOT EXISTS `gamespot_search` (
   `fgsUrl` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `googlemusic_album`
---
-
-DROP TABLE IF EXISTS `googlemusic_album`;
-CREATE TABLE IF NOT EXISTS `googlemusic_album` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `gmalbumID` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `artist` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `title` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `year` mediumint(9) NOT NULL,
-  `genre` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `url` varchar(255) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `googlemusic_albumsearch`
---
-
-DROP TABLE IF EXISTS `googlemusic_albumsearch`;
-CREATE TABLE IF NOT EXISTS `googlemusic_albumsearch` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `search` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `gmalbumID` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `fgmalbumID` varchar(255) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`ID`),
-  KEY `search` (`search`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Google music album search';
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `imdb_film`

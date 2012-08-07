@@ -1,5 +1,6 @@
 <?php 
 require_once( INCLUDEPATH.'rovi.php' );
+require_once( INCLUDEPATH.'discogs.php' );
 
 class music
 {
@@ -32,6 +33,7 @@ class music
 	function music(){
 		// Instantiate new instances here
 		$this->_exts_array[] = new rovi();
+		$this->_exts_array[] = new discogs();
 		
 		foreach( $this->_exts_array as $ext )
 		{
@@ -46,7 +48,7 @@ class music
 			$search = preg_replace($regex,"",$search);
 			//if($this->_debug) printf( "query during: %s - regex:%s \n", $query,$catregex );
 		}
-		$search = str_replace( $this->ed_def['strip'], ' ', $search );
+		$search = trim(str_replace( $this->ed_def['strip'], ' ', $search ));
 		return $search;
 	}
 	
@@ -69,7 +71,7 @@ class music
 		if( !$ignoreCache )
 		{// Use from cache if it's available
 			foreach( $this->_exts_array as $ext )
-			{
+			{	if( $this->_debug ) printf( "Checking Cache: %s search\n", $search );
 				if( ( $albumID = $ext->checkCache( $filteredsearch ) ) !== false )
 				{// Search done before and we have an album ID
 					if( $this->_debug ) printf( "albumID: %s Found\n", $albumID );

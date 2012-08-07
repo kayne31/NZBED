@@ -3,7 +3,7 @@
 require_once( 'Numbers/Roman.php' );
 
 class ed
-{
+{ 
 	//Main editor array.  It gets pulled to the extensions so any changes made here will reflect there.
 	var $_def = array(
 			'info' => array(
@@ -510,7 +510,7 @@ class ed
 	{
 		global $api;
 		if ( $this->_debug ) printf("tvQuery( string:%s )\n", $string );
-		if ( $result = $api->tv->search( $string ) )
+		if ( $result = $api->tv->search( $string, $this->ignoreCache ) )
 		{
 			if ( $this->_debug ) var_dump($result);
 			return $result;

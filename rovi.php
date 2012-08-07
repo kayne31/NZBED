@@ -31,7 +31,7 @@ class rovi{
 		// Rovi API found nothing let's use Google Search to see if we can get a Rovi ID
 		if( ( $albumID = $this->searchGoogle($search) ) != false ) {
 			//Found an AlbumID going to pull from API with ID
-			if( ( $result = $this->getAlbumfromdb( $albumID ) ) !== false ){
+			if( ( $result = $this->getAlbum( $albumID ) ) !== false ){
 				return $result;// We found the album in the database and are returning it.
 			}
 		}

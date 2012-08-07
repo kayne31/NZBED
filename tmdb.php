@@ -112,7 +112,6 @@ class tmdb{
 		{
 			$film['year'] = 0;
 		}
-		
 		if($movie['imdb_id'] != '')
 		{
 			$film['url'] = sprintf('http://www.imdb.com/title/%s/', $movie['imdb_id']);

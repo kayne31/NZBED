@@ -1,7 +1,7 @@
 <?php
 
 
-$path = './PEAR/'; //path to pear install
+$path = './PEAR/';
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 ini_set("display_errors", 0);
@@ -188,7 +188,6 @@ if ( isset( $_REQUEST['q'] ) )
 	$arr = $api->getInfo( $_REQUEST['q'], isset($_REQUEST['t']) ? $_REQUEST['t'] : false);
 
 	echo $api->toXML( $arr );
-	$myFile = "testFile.txt";
 }
 
 ?>
