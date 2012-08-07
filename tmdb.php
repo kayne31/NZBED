@@ -1,183 +1,123 @@
 <?php
+require_once( 'HTTP/Request.php' );
 
 class tmdb{
-	/**
-	 * url of TMDB api
-	 */
+	var $_debug = false;
 	const _API_URL_ = "http://api.themoviedb.org/3/";
-	private $_apikey = "51feaa74efec5fd6a1caf6b92c4229c6";
+	private $_apikey = "51feaa74efec5fd6a1caf6b92c4229c6";	
 	var $_def = array(
-			'url' => array(
-					'id' => 'http://www.themoviedb.org/movie/%s'
+			'myname' => 'tmdb',
+			'myurl' => '/^(?:http:\/\/)?(?:www\.)?themoviedb\.org\/movie\/(\d+)/i',
+			'urls' => array(
+					'movie' => 'http://www.themoviedb.org/movie/%s'
 			),
-			'year' => array(
+			'regex' => array(
+				'year' => array(
 					'/(19\d{2})|(20\d{2})/'
-					),
-			'filter' => array(
-					'/\b(ntsc|usa|jpn)\b/i',
-					'/\b(pal|eur)\b/i',
-					'/\bsecam\b/i',
-					'/\bcam\b/i',
-					'/(dvd[.-]?scr|screener)/i',
-					'/\btc\b/i',
-					'/\br5/i',
-					'/\bts\b/i',
-					'/vhs/i',
-					'/(hdtv|\.ts(?!\.))/i',
-					'/dvd/i',
-					'/(tvrip|pdtv|dsr|dvb|sdtv|dtv|satrip)/i',
-					'/hd[-.]?dvd/i',
-					'/(blu[-. ]?ray|b(d|r|rd)[-.]?(rom|rip))/i',
-					'/(web[-. ]?dl|hditunes|ituneshd|ithd|webhd)/i',
-					'/xvid/i',
-					'/dvd(?!rip?.)/i',
-					'/((h.?264|x264|avc))/i',
-					'/avchd/i',
-					'/\.ts(?!\.)/i',
-					'/svcd/i',
-					'/mvcd/i',
-					'/divx/i',
-					'/w(mv|vc1)/i',
-					'/ratDVD/i',
-					'/(720p|\.?720)/i',
-					'/1080i/i',
-					'/1080p/i',
-					'/psp/i',
-					'/\b(ipod|iphone|itouch)\b/i',
-					'/(ac3|dd[25]\.?[01]|5\.1)/i',
-					'/dts/i',
-					'/mp3/i',
-					'/aac/i',
-					'/\bogg\b/i',
-					'/(flac|lossless)/i',
-					'/DVD/i',
-					'/(!<?clone)CD/i',
-					'/Clone(\.|\-|_|)CD/i',
-					'/Alcohol(\.|\-|_|)120%/i',
-					'/((DL)|(multi(5|3)))/i',
-					'/(french)/i',
-					'/((\.+DL\.+)|(german(?!.sub?.))|(deutsch))/i',
-					'/((spanish)|(multi5))/i',
-					'/((italian)|(multi(5|3)))/i',
-					'/((dutch))/i',
-					'/((\.+PL\.+))/i',
-					'/((vostfr)|(vost))/i',
-					'/(german.sub)/i',
-					'/((nlsubs)|(nl.?subbed))/i',
-					'/dvd.+/i',
-					'/proper.+/i',
-					'/iNTERNAL.*/',
-					'/WS/',
-					'/HR/'
+					)
 			)
 	);
-
-	var $_debug = false;
 	
-	function filter( $search )
+	function search( $query )
 	{
-		foreach ($this->_def['filter'] as $filter){
-			$search = preg_replace($filter,"",$search);
-			//if($this->_debug) printf( "query during: %s - regex:%s \n", $search,$filter );
+		if ( ( $id = $this->apisearch( $query ) ) !== false )
+		{
+			return $this->getFilm( $id );
 		}
-		return $search;
+		return false;
 	}
 	
-	function getSFilm( $query, $ignoreCache = false )
-	{
-		if($this->_debug) printf( "query before: %s \n", $query );
-		$filteredquery = $this->filter( $query );
-		if($this->_debug) printf( "query after: %s \n", $filteredquery );
-		if ( ( $tmdbID = $this->findFilm( $filteredquery, $ignoreCache ) ) !== false )
-		{
-			return $this->getFilm( $tmdbID, $ignoreCache );
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function findFilm( $query, $ignoreCache = false )
-	{
+	function checkCache( $search ){
 		global $api;
-
-		$res = $api->db->select( '*', 'tmdb_search', array('search' => $query ), __FILE__, __LINE__ );
-
+		$res = $api->db->select( '*', 'tmdb_search', array('search' => $search ), __FILE__, __LINE__ );
 		$nRows = $api->db->rows( $res );
-		// check the cache
 		if ( $nRows >= 1 )
 		{
 			$row = $api->db->fetch( $res );
-			if ( $ignoreCache == false )
-			{
-				if ( $this->_debug ) printf( "using cache: %d\n", $row->tmdbID );
-				return $row->tmdbID;
-			}
-		}
-		// find film
-		$squery="query=".urlencode($query);
-		if ( $this->_debug ) printf( "url: %s \n", $squery );
-		$results = $this->_call("search/movie",$squery,"en");
-		if($results['results'][0]['id'] != ''){
-			if ( $nRows >= 1 ){
-				$api->db->update( 'tmdb_search', array( 'tmdbID' => $results['results'][0]['id'] ), array( 'search' => $query ), __FILE__, __LINE__ );
-			}else{
-				$api->db->insert( 'tmdb_search', array( 'tmdbID' => $results['results'][0]['id'], 'search' => $query ), __FILE__, __LINE__ );
-			}
-			return $results['results'][0]['id'];
+			return $row->tmdbID;
 		}else{
 			return false;
 		}
 	}
-
-	function getFilm( $tmdbID, $ignoreCache = false)
+	
+	function geturlregex(){
+		return $this->_def['myurl'];
+	}
+	
+	function getmoviefromurl($url, $ignoreCache = false){
+		if($this->_debug) printf( "url: %s \n", $url );
+		preg_match( $this->_def['myurl'], $url, $urlinfo );
+		if( !$ignoreCache )
+		{
+			if( ( $movie = $this->getMoviefromdb($urlinfo['1']) ) != false)
+			{
+				return $movie;
+			}
+		}
+		if( ( $movie = $this->getFilm( $urlinfo['1'] ) ) != false)
+		{
+			return $movie;
+		}else{
+			return false;
+		}
+	}
+	
+	function getMoviefromdb( $id )
+	{
+		global $api;
+		$res = $api->db->select( '*', 'tmdb_film', array( 'tmdbID' => $id ), __FILE__, __LINE__ );
+		$nRows = $api->db->rows( $res );
+		if ( $nRows >= 1 )
+		{
+			$row = $api->db->fetch( $res );
+			return $row;
+		}else{
+			return false;
+		}
+	}
+	
+	function ismyurl( $url )
+	{
+		if( preg_match($this->_def['myurl'], $url ) != false )
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	function getFilm( $tmdbID )
 	{
 		global $api;
 
 		$res = $api->db->select( '*', 'tmdb_film', array( 'tmdbID' => $tmdbID ), __FILE__, __LINE__ );
-
 		$nRows = $api->db->rows( $res );
-
-		if ( $nRows >= 1 )
-			$row = $api->db->fetch( $res );
-
-		// check cache
-		if ( ($nRows >= 1) && ($ignoreCache == false ) )
-		{
-			if ( $this->_debug ) printf( 'getFilm: usingCache' );
-			return $row;
-		}
-		 	
 		$query="movie/".$tmdbID;
-		
-		if ( $this->_debug ) printf( "url: %s \n", $query );
+		if ( $this->_debug ) printf( "query: %s \n", $query );
 		$movie= $this->_call($query,"");
-		foreach ($movie['genres'] as $gen)
-		{
-			$genstr [] = $gen['name'];
-		}
-		$genstr = ( count( $genstr ) > 0 )? implode( ', ', $genstr ):'';
+		$genstr = $this->processgenres( $movie['genres'] );
 		$film = array(
 				'tmdbID' => $tmdbID,
 				'title' => $movie['title'],
 				'year' => substr($movie['release_date'],0,4),
 				'genre' => $genstr,
-				'url' => sprintf( $this->_def['url']['id'], $tmdbID ),
+				'url' => sprintf( $this->_def['urls']['movie'], $tmdbID ),
 				'aka' => ""
 				);
 		if ( empty( $film['title'] ) )
 		{
-			if ( $nRows >= 1 )
-				return $row;
 			return false;
 		}
-
-		$film['title'] = str_replace( '"','',$film['title'] );
-		
-		if(isset($movie['imdb_id']))
+		if ( empty( $film['year'] ) || $film['year'] === null )
 		{
-			$api->imdb->getFilm($movie['imdb_id']);
+			$film['year'] = 0;
+		}
+		
+		if($movie['imdb_id'] != '')
+		{
+			$film['url'] = sprintf('http://www.imdb.com/title/%s/', $movie['imdb_id']);
+			if( $this->_debug ) echo "Inserting into IMDB";
+			$api->movies->insertImdb($movie['imdb_id']);
 		}
 		
 		if ( $nRows >= 1 )
@@ -187,8 +127,42 @@ class tmdb{
 
 		return (object)$film; 
 	}
+	
+	function processgenres( $result ){
+		if( is_array( $result ) ){
+		foreach ($result as $gen)
+			{
+				$genstr [] = $gen['name'];
+			}
+			$genstr = ( count( $genstr ) > 0 )? implode( ', ', $genstr ):'';
+		}else{
+			$genstr = $result;
+		}
+		return $genstr;
+	}
+	
+	function apisearch( $search )
+	{
+		global $api;
 
-
+		$query="query=".urlencode($search);
+		if ( $this->_debug ) printf( "url: %s \n", $query );
+		$results = $this->_call("search/movie",$query,"en");
+		if($results['results'][0]['id'] != '')
+		{
+			$res = $api->db->select( '*', 'tmdb_search', array('search' => $search ), __FILE__, __LINE__ );
+			$nRows = $api->db->rows( $res );
+			if ( $nRows >= 1 ){
+				$api->db->update( 'tmdb_search', array( 'tmdbID' => $results['results'][0]['id'] ), array( 'search' => $search ), __FILE__, __LINE__ );
+			}else{
+				$api->db->insert( 'tmdb_search', array( 'tmdbID' => $results['results'][0]['id'], 'search' => $search ), __FILE__, __LINE__ );
+			}
+			return $results['results'][0]['id'];
+		}else{
+			return false;
+		}
+	}
+	
 	/**
 	 * Makes the call to the API
 	 *
@@ -219,10 +193,13 @@ class tmdb{
 		$results = json_decode(($results),true);
 		return (array) $results;
 	}
-
+	
+	function getName(){
+		return $this->_def['myname'];
+	}
 
 	private function getApikey() {
 		return $this->_apikey;
-	}
+	}	
 }
 ?>

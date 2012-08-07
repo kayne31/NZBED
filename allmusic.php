@@ -1,29 +1,5 @@
 <?php
 
-/**************************************************
- * NZBed
- * Copyright (c) 2006 Harry Bragg
- * tiberious.org
- * Module: amg
- **************************************************
- *
- * Full GPL License: <http://www.gnu.org/licenses/gpl.txt>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
- */
-
 require_once( 'HTTP/Request.php' );
 
 class amg
@@ -41,8 +17,8 @@ class amg
 //			'albumsearch' => 'http://www.allmusic.com/cg/amg.dll?p=amg&sql=%s~T2%d', // 1-3 main, compilation, single
 //			'album' => 'http://www.allmusic.com/cg/amg.dll?p=amg&sql=%s'
 			'search' => 'http://allmusic.com/search/artist/%s/filter:all/exact:0',
-			'albumsearch' => 'http://allmusic.com/artist/%s/discography/%s', // main,compilations,singles-eps
-			'album' => 'http://allmusic.com/album/%s'
+			'albumsearch' => 'http://www.allmusic.com/-/search/all/%s', // main,compilations,singles-eps
+			'album' => 'http://www.allmusic.com/-/search/all/%s'
 		),
 		'albumtype' => array(
 			'main',
@@ -51,7 +27,7 @@ class amg
 		),
 		'regex' => array(
 			'search' => array( '/<td><a href="http:\/\/allmusic.com\/artist\/(.+?)">([^<]+)<\/a><\/td>/i' ),
-			'albumsearch' => array( '/<td class="cell"><a href="http:\/\/allmusic.com\/album\/(.+?)">(.+?)<\/a><\/td>/i' ),
+			'albumsearch' => array( '/<td class="cell"><a href="http:\/\/allmusic.com\/\/search\/all\/(.+?)">(.+?)<\/a><\/td>/i' ),
 			'album' => array(
 				'title' => '/<h1 class="title">(.+?)<\/h1>\s*<div class="subtitle"><a href="http:\/\/allmusic.com\/artist\/(.+?)">(.+?)<\/a><\/div>/i',
 				'genre' => '/<li><a href="[^"]+">(.+?)<\/a><\/li>/i',
@@ -60,7 +36,9 @@ class amg
 		),
 	);
 
-	var $debug = false;
+	var $debug = true;
+	//store errors
+	var $error;
 
 	/**
 	 * Get URL
@@ -71,6 +49,7 @@ class amg
 	 */
 	function getUrl( $url, $redirect = true )
 	{
+		if ( $this->debug ) printf("amg->getUrl( url:%s, redirect:%d )\n", $url, $redirect );
 		$req =& new HTTP_Request( );
 		$req->setMethod(HTTP_REQUEST_METHOD_GET);
 		$req->setURL( $url, array( 'timeout' => 30, 'readTimeout' => 30, 'allowRedirects' => $redirect ) );
@@ -82,6 +61,7 @@ class amg
 			$tmp = $req->getResponseHeader();
 			if ( isset( $tmp['location'] ) ) 
 			{
+				if ( $this->debug ) printf(" Returning redirection location: %s\n", $tmp['location'] );
 				return $this->getUrl( $tmp['location'] );
 			}
 			$body = $req->getResponseBody();
@@ -230,12 +210,12 @@ class amg
 
 		if ( isset( $found ) )
 		{
-		/*
+		
 			if ( $nRows >= 1 )
 				$api->db->update( 'allmusic_albumsearch', array( 'amgalbumID' => $found ), array( 'amgartistID' => $artistID, 'search' => $query ), __FILE__, __LINE__ );
 			else
 				$api->db->insert( 'allmusic_albumsearch', array( 'amgalbumID' => $found, 'amgartistID' => $artistID, 'search' => $query ), __FILE__, __LINE__ );
-		*/
+		
 			return $found;
 		}
 		

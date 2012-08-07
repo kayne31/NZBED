@@ -1,19 +1,19 @@
 <?php
 
 
-$path = './PEAR/';
+$path = './PEAR/'; //path to pear install
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 ini_set("display_errors", 0);
 define( 'INCLUDEPATH', './' );
+//we include all the Category Extensions they will handle the individual extensions
 require_once( INCLUDEPATH.'mysql.inc.php' );
 require_once( INCLUDEPATH.'ed.php' );
-require_once( INCLUDEPATH.'tvrage.php' );
-require_once( INCLUDEPATH.'imdb.php' );
-require_once( INCLUDEPATH.'gamespot.php' );
-require_once( INCLUDEPATH.'anidb.php' );
-require_once( INCLUDEPATH.'tmdb.php' );
-require_once( INCLUDEPATH.'rovi.php' );
+require_once( INCLUDEPATH.'tv.php' );
+require_once( INCLUDEPATH.'movies.php' );
+require_once( INCLUDEPATH.'games.php' );
+require_once( INCLUDEPATH.'anime.php' );
+require_once( INCLUDEPATH.'music.php' );
 
 require_once( 'XML/Serializer.php' );
 
@@ -23,25 +23,30 @@ class api
 	
 	var $db;
 	var $ed;
-	var $tvrage;
-	var $imdb;
-	var $game;
-	var $anidb;
-	var $tmdb;
-	var $rovi;
+	var $tv;
+	var $games;
+	var $anime;
+	var $movies;
+	var $music;
+	var $ext_Array;// this will hold all the extensions as well makes it quicker to scan for a url match  also may use it later for rest
 
 	function api( $ids, $cache )
 	{
 		global $db;
+		global $ed;
 		$this->db = $db;
 		
-		$this->ed = new ed( $ids, $cache );
-		$this->tvrage = new tvrage();
-		$this->imdb = new imdb();
-		$this->game = new gamespot();
-		$this->anidb = new anidb();
-		$this->tmdb = new tmdb();
-		$this->rovi = new rovi();
+		$this->tv = new tv();
+		$this->movies = new movies();
+		$this->games = new games();
+		$this->anime = new anime();
+		$this->music = new music();
+		$this->ed = $ed;
+		$this->ext_Array[]= $this->tv;
+		$this->ext_Array[]= $this->movies;
+		$this->ext_Array[]= $this->games;
+		$this->ext_Array[]= $this->anime;
+		$this->ext_Array[]= $this->music;
 		
 	 	$options = array(
 			XML_SERIALIZER_OPTION_INDENT           => '    ',
@@ -56,9 +61,13 @@ class api
 		$this->xml = new XML_Serializer( $options );
 	}
 	
-	function getInfo( $string, $cat, $tmdb )
+	function getextArray(){
+		return $this->ext_Array;
+	}
+	
+	function getInfo( $string, $cat )
 	{
-		if ( ( $report = $this->ed->Query( $string, $cat, $tmdb ) ) === false )
+		if ( ( $report = $this->ed->Query( $string, $cat ) ) === false )
 		{
 			$report = array(
 				'error' => $this->ed->_error
@@ -158,19 +167,28 @@ class api
 
 if ( isset( $_REQUEST['q'] ) )
 {
-	//print_r($_REQUEST['q']);
+	//creating ed here so it can be a global for the extensions
+	$ed= new ed( isset($_REQUEST['i']) ? $_REQUEST['i'] : false, isset($_REQUEST['c']) ? $_REQUEST['c'] : false );
 	$api = new api( isset($_REQUEST['i']) ? $_REQUEST['i'] : false, isset($_REQUEST['c']) ? $_REQUEST['c'] : false);
-
+	//setting the primary search provider for movies if set.  Default is TMDB.  For new movie extension just put in here and in nzbed extension
+	if( isset( $_REQUEST['m'] ) )
+	{
+		switch( $_REQUEST['m'] ){
+			case 0:
+				$api->movies->setPrimary( 'tmdb' );
+				break;
+			case 1:
+				$api->movies->setPrimary( 'imdb' );
+				break;
+		}
+	}
+	
 	header( 'Content-type: text/xml' );
 
-	$arr = $api->getInfo( $_REQUEST['q'], isset($_REQUEST['t']) ? $_REQUEST['t'] : false, isset($_REQUEST['m']) ? $_REQUEST['m'] : false);
+	$arr = $api->getInfo( $_REQUEST['q'], isset($_REQUEST['t']) ? $_REQUEST['t'] : false);
 
 	echo $api->toXML( $arr );
 	$myFile = "testFile.txt";
-/* $fh = fopen($myFile, 'a') or die("can't open file");
-fwrite($fh, $api->toXML( $arr ));
-fclose($fh);*/
-
 }
 
 ?>
