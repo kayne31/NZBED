@@ -25,8 +25,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `discogs_album`
 --
 
-DROP TABLE IF EXISTS `discogs_album`;
-CREATE TABLE `discogs_album` (
+CREATE TABLE IF NOT EXISTS `discogs_album` (
   `albumID` varchar(255) NOT NULL DEFAULT '',
   `artist` varchar(255) NOT NULL DEFAULT '',
   `artistID` varchar(255) NOT NULL DEFAULT '',
@@ -36,7 +35,7 @@ CREATE TABLE `discogs_album` (
   `type` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`albumID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -44,13 +43,12 @@ CREATE TABLE `discogs_album` (
 -- Table structure for table `discogs_search`
 --
 
-DROP TABLE IF EXISTS `discogs_search`;
-CREATE TABLE `discogs_search` (
+CREATE TABLE IF NOT EXISTS `discogs_search` (
   `search` varchar(255) NOT NULL,
   `albumID` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`search`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,12 +56,11 @@ CREATE TABLE `discogs_search` (
 -- Table structure for table `music_search`
 --
 
-DROP TABLE IF EXISTS `music_search`;
 CREATE TABLE IF NOT EXISTS `music_search` (
   `search` varchar(255) NOT NULL,
   `albumID` varchar(255) NOT NULL,
   PRIMARY KEY (`search`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -71,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `music_search` (
 -- Table structure for table `music_album`
 --
 
-DROP TABLE IF EXISTS `music_album`;
 CREATE TABLE IF NOT EXISTS `music_album` (
   `albumID` varchar(255) NOT NULL DEFAULT '',
   `artist` varchar(255) NOT NULL DEFAULT '',
@@ -81,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `music_album` (
   `genre` text NOT NULL,
   `url` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`albumID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -89,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `music_album` (
 -- Table structure for table `anidb_anime`
 --
 
-DROP TABLE IF EXISTS `anidb_anime`;
 CREATE TABLE IF NOT EXISTS `anidb_anime` (
   `animeID` int(10) unsigned NOT NULL auto_increment,
   `anidbID` varchar(255) NOT NULL default '',
@@ -107,7 +102,6 @@ CREATE TABLE IF NOT EXISTS `anidb_anime` (
 -- Table structure for table `anidb_search`
 --
 
-DROP TABLE IF EXISTS `anidb_search`;
 CREATE TABLE IF NOT EXISTS `anidb_search` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `search` varchar(255) NOT NULL default '',
@@ -123,7 +117,6 @@ CREATE TABLE IF NOT EXISTS `anidb_search` (
 -- Table structure for table `gamespot_game`
 --
 
-DROP TABLE IF EXISTS `gamespot_game`;
 CREATE TABLE IF NOT EXISTS `gamespot_game` (
   `gsID` int(10) unsigned NOT NULL auto_increment,
   `gsUrl` varchar(255) NOT NULL default '',
@@ -142,7 +135,6 @@ CREATE TABLE IF NOT EXISTS `gamespot_game` (
 -- Table structure for table `gamespot_search`
 --
 
-DROP TABLE IF EXISTS `gamespot_search`;
 CREATE TABLE IF NOT EXISTS `gamespot_search` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `search` varchar(255) NOT NULL default '',
@@ -155,7 +147,6 @@ CREATE TABLE IF NOT EXISTS `gamespot_search` (
 -- Table structure for table `imdb_film`
 --
 
-DROP TABLE IF EXISTS `imdb_film`;
 CREATE TABLE IF NOT EXISTS `imdb_film` (
   `filmID` int(10) unsigned NOT NULL auto_increment,
   `imdbID` varchar(255) NOT NULL default '',
@@ -174,7 +165,6 @@ CREATE TABLE IF NOT EXISTS `imdb_film` (
 -- Table structure for table `imdb_search`
 --
 
-DROP TABLE IF EXISTS `imdb_search`;
 CREATE TABLE IF NOT EXISTS `imdb_search` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `search` varchar(255) NOT NULL default '',
@@ -189,7 +179,6 @@ CREATE TABLE IF NOT EXISTS `imdb_search` (
 -- Table structure for table `query_fail`
 --
 
-DROP TABLE IF EXISTS `query_fail`;
 CREATE TABLE IF NOT EXISTS `query_fail` (
   `queryID` int(10) unsigned NOT NULL auto_increment,
   `type` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -207,7 +196,6 @@ CREATE TABLE IF NOT EXISTS `query_fail` (
 -- Table structure for table `tvrage_episode`
 --
 
-DROP TABLE IF EXISTS `tvrage_episode`;
 CREATE TABLE IF NOT EXISTS `tvrage_episode` (
   `episodeID` int(10) unsigned NOT NULL auto_increment,
   `tvrageEpisodeID` int(10) unsigned NOT NULL default '0',
@@ -228,7 +216,6 @@ CREATE TABLE IF NOT EXISTS `tvrage_episode` (
 -- Table structure for table `tvrage_search`
 --
 
-DROP TABLE IF EXISTS `tvrage_search`;
 CREATE TABLE IF NOT EXISTS `tvrage_search` (
   `searchID` int(10) unsigned NOT NULL auto_increment,
   `search` varchar(255) collate utf8_unicode_ci NOT NULL default '',
@@ -244,7 +231,6 @@ CREATE TABLE IF NOT EXISTS `tvrage_search` (
 -- Table structure for table `tvrage_show`
 --
 
-DROP TABLE IF EXISTS `tvrage_show`;
 CREATE TABLE IF NOT EXISTS `tvrage_show` (
   `showID` int(10) unsigned NOT NULL auto_increment,
   `tvrageShowID` int(11) NOT NULL,
@@ -266,13 +252,12 @@ CREATE TABLE IF NOT EXISTS `tvrage_show` (
 -- Table structure for table `tmdb_search`
 --
 
-DROP TABLE IF EXISTS `tmdb_search`;
 CREATE TABLE IF NOT EXISTS `tmdb_search` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `search` varchar(255) NOT NULL DEFAULT '',
   `tmdbID` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -280,7 +265,6 @@ CREATE TABLE IF NOT EXISTS `tmdb_search` (
 -- Table structure for table `tmdb_film`
 --
 
-DROP TABLE IF EXISTS `tmdb_film`;
 CREATE TABLE IF NOT EXISTS `tmdb_film` (
   `filmID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tmdbID` varchar(255) NOT NULL DEFAULT '',
@@ -290,5 +274,5 @@ CREATE TABLE IF NOT EXISTS `tmdb_film` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `aka` varchar(255) NOT NULL,
   PRIMARY KEY (`filmID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
