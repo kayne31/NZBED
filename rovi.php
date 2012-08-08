@@ -54,7 +54,7 @@ class rovi{
 	
 	function getAlbumfromdb($albumID){
 		global $api;
-		$res = $api->db->select( '*', 'music_album', array( 'albumID' => $albumID ), __FILE__, __LINE__ );
+		$res = $api->db->select( '*', 'rovi_album', array( 'albumID' => $albumID ), __FILE__, __LINE__ );
 		$nRows = $api->db->rows( $res );
 		if ( $nRows >= 1 )
 		{
@@ -68,7 +68,7 @@ class rovi{
 	function checkCache( $search ){
 		global $api;
 
-		$res = $api->db->select( '*', 'music_search', array('search' => $search ), __FILE__, __LINE__ );
+		$res = $api->db->select( '*', 'rovi_search', array('search' => $search ), __FILE__, __LINE__ );
 		$nRows = $api->db->rows( $res );
 		if ( $nRows >= 1 )
 		{
@@ -106,13 +106,12 @@ class rovi{
 		{
 			$results = json_decode($response,true);
 			$result = $results['album'];
-			$res = $api->db->select( '*', 'music_album', array( 'albumID' => $albumID ), __FILE__, __LINE__ );
+			$res = $api->db->select( '*', 'rovi_album', array( 'albumID' => $albumID ), __FILE__, __LINE__ );
 			$nRows = $api->db->rows( $res );
 			$genstr = $this->processgenres( $result['genres'] );
 			$album = array(
 					'albumID' => $result['ids']['albumId'],
 					'artist' => $result['primaryArtists'][0]['name'],
-					'artistID' => $result['primaryArtists'][0]['id'],
 					'title' => preg_replace( $this->_def['regex']['title'],"",$result['title']),
 					'year' => substr($result['originalReleaseDate'],0,4),
 					'genre' => $genstr,
@@ -132,11 +131,11 @@ class rovi{
 			}
 			if( $nRows >= 1 )
 			{
-				$api->db->update( 'music_album', $album, array( 'albumID' => $album['albumID'] ), __FILE__, __LINE__  );
-				$api->db->update( 'music_search', array( 'search' => $albumID ), array( 'albumID' => $album['albumID'] ),  __FILE__, __LINE__  );
+				$api->db->update( 'rovi_album', $album, array( 'albumID' => $album['albumID'] ), __FILE__, __LINE__  );
+				$api->db->update( 'rovi_search', array( 'search' => $albumID ), array( 'albumID' => $album['albumID'] ),  __FILE__, __LINE__  );
 			}else{
-				$api->db->insert( 'music_album', $album, __FILE__, __LINE__ );
-				$api->db->insert( 'music_search', array( 'search' => $albumID, 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
+				$api->db->insert( 'rovi_album', $album, __FILE__, __LINE__ );
+				$api->db->insert( 'rovi_search', array( 'search' => $albumID, 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
 			}
 			return (object)$album;
 		}
@@ -201,13 +200,12 @@ class rovi{
 		{
 			$results = json_decode($response,true);
 			$result = $results['searchResponse']['results'][0]['album'];
-			$res = $api->db->select( '*', 'music_album', array( 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
+			$res = $api->db->select( '*', 'rovi_album', array( 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
 			$nRows = $api->db->rows( $res );
 			$genstr = $this->processgenres( $result['genres'] );
 			$album = array(
 					'albumID' => $result['ids']['albumId'],
 					'artist' => $result['primaryArtists'][0]['name'],
-					'artistID' => $result['primaryArtists'][0]['id'],
 					'title' => preg_replace( $this->_def['regex']['title'],"",$result['title']),
 					'year' => substr($result['originalReleaseDate'],0,4),
 					'genre' => $genstr,
@@ -227,11 +225,11 @@ class rovi{
 			}
 			if( $nRows >= 1 )
 			{
-				$api->db->update( 'music_album', $album, array( 'albumID' => $album['albumID'] ), __FILE__, __LINE__  );
-				$api->db->update( 'music_search', array( 'search' => $search ), array( 'albumID' => $album['albumID'] ),  __FILE__, __LINE__  );
+				$api->db->update( 'rovi_album', $album, array( 'albumID' => $album['albumID'] ), __FILE__, __LINE__  );
+				$api->db->update( 'rovi_search', array( 'search' => $search ), array( 'albumID' => $album['albumID'] ),  __FILE__, __LINE__  );
 			}else{
-				$api->db->insert( 'music_album', $album, __FILE__, __LINE__ );
-				$api->db->insert( 'music_search', array( 'search' => $search, 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
+				$api->db->insert( 'rovi_album', $album, __FILE__, __LINE__ );
+				$api->db->insert( 'rovi_search', array( 'search' => $search, 'albumID' => $result['ids']['albumId'] ), __FILE__, __LINE__ );
 			}
 			return (object)$album;
 		}

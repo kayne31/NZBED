@@ -1,6 +1,7 @@
 <?php 
 require_once( INCLUDEPATH.'rovi.php' );
 require_once( INCLUDEPATH.'discogs.php' );
+require_once( INCLUDEPATH.'mbrainz.php' );
 
 class music
 {
@@ -34,6 +35,7 @@ class music
 		// Instantiate new instances here
 		$this->_exts_array[] = new rovi();
 		$this->_exts_array[] = new discogs();
+		$this->_exts_array[] = new mbrainz();
 		
 		foreach( $this->_exts_array as $ext )
 		{
@@ -152,21 +154,26 @@ class music
 			$report['category'] = 'Music';
 		}
 		$report['attributes'] = $tmp['attributes'];
-
-		$genres = explode( ', ', $album->genre );
-
+		if(strlen($album->genre) != 0){
+			$genres = explode( ', ', $album->genre );
+		}else{
+			$genres = $album->genre;
+		}
+		
 		if ( $this->_debug ) var_dump( $genres );
-
-		foreach( $genres as $gen )
+		if(is_array($genres))
 		{
-			$gen = trim( $gen );
-			if ( isset( $this->ed_def['siteAttributes']['audiogenre'][$gen] ) )
+			foreach( $genres as $gen )
 			{
-				$ed->addAttr( $report, 'Music', 'AudioGenre', $this->ed_def['siteAttributes']['audiogenre'][$gen] );
-			}
-			else
-			{
-				$ed->addAttr( $report, 'Music', 'AudioGenre', $gen );
+		 		$gen = trim( $gen );
+				if ( isset( $this->ed_def['siteAttributes']['audiogenre'][$gen] ) )
+				{
+					$ed->addAttr( $report, 'Music', 'AudioGenre', $this->ed_def['siteAttributes']['audiogenre'][$gen] );
+				}
+				else
+				{
+					$ed->addAttr( $report, 'Music', 'AudioGenre', $gen );
+				}
 			}
 		}
 		if ( ( !$ed->ids ) &&

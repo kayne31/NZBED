@@ -116,7 +116,8 @@ class ed
 							'Spanish' => '/((spanish)|(multi5))/i',
 							'Italian' => '/((italian)|(multi(5|3)))/i',
 							'Dutch' => '/((dutch))/i',
-							'Polish' => '/((\.+PL\.+))/i'
+							'Polish' => '/((\.+PL\.+))/i',
+							'Swedish' => '/swedish/i'
 					),
 	
 					'Anime' => array(

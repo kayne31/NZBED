@@ -8,7 +8,7 @@ class discogs{
 	const _API_URL_ID_ = "http://api.discogs.com/";
 	
 	var $_def = array(
-			'url' => '/^(?:http:\/\/)?(?:www\.)?discogs.com\//i',
+			'url' => '/discogs.com\/[a-z-]+\/(master|release)\/(\d+)/i',
 			'urls' => array(
 					'search' => 'http://www.google.com/search?hl=en&q=%s+site:discogs.com'
 			),
@@ -92,6 +92,8 @@ class discogs{
 			if( ( $result = $this->getAlbumfromdb($urlinfo['2']) ) != false)
 			{
 				return $result;
+			}elseif( ( $album = $this->getAlbum($id) ) != false){
+				return $album;
 			}
 		}
 		return false;
@@ -122,7 +124,6 @@ class discogs{
 			$album = array(
 					'albumID' => $result['id'],
 					'artist' => $result['artists'][0]['name'],
-					'artistID' => $result['artists'][0]['id'],
 					'title' => preg_replace( $this->_def['regex']['title'],"",$result['title']),
 					'year' => $result['year'],
 					'genre' => $genstr,
