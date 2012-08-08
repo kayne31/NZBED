@@ -42,7 +42,7 @@ class movies{
 					'/1080p/i',
 					'/psp/i',
 					'/\b(ipod|iphone|itouch)\b/i',
-					'/(ac3d|ac3|dd[25]\.?[01]|5\.1)/i',
+					'/(ac3ld|ac3d|ac3|dd[25]\.?[01]|5\.1)/i',
 					'/(dtshd|dts)/i',
 					'/mp3/i',
 					'/aac/i',
