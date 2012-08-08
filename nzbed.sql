@@ -2,6 +2,12 @@ CREATE DATABASE  IF NOT EXISTS `nzbed`;
 USE `nzbed`;
 
 --
+-- Removal of obsolete tables
+--
+
+DROP TABLE IF EXISTS `allmusic_album`, `allmusic_albumsearch`, `allmusic_artistsearch`, `googlemusic_album`, `googlemusic_albumsearch`; 
+
+--
 -- Table structure for table `anidb_anime`
 --
 
