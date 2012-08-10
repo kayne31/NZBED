@@ -82,7 +82,7 @@ class ed
 							'3D' => '/\b(3d|sbs|h[-. ]?sbs|half[-. ]?sbs)\b/i'
 					),
 					'Audio' => array(
-							'AC3/DD' => '/(ac3|dd[25]\.?[01]|5\.1)/i',
+							'AC3/DD' => '/(ac3|dd[25]\.?[01])/i',
 							'dts' => '/dts/i',
 							'MP3' => '/mp3/i',
 							'AAC' => '/aac/i',
