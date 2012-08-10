@@ -87,7 +87,7 @@ class ed
 							'MP3' => '/mp3/i',
 							'AAC' => '/aac/i',
 							'Ogg' => '/\bogg\b/i',
-							'Lossless' => '/\b(flac|lossless|dts-?hd|true-?hd)\b/i'
+							'Lossless' => '/\b(flac|lossless|dts-?(hd|hdma)|true-?hd)\b/i'
 					),
 					'ConsolePlatform' => array(
 							'Xbox' => '/Xbox/i',
