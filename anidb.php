@@ -119,28 +119,59 @@ class anidb
 		}
 	}
 	
-	function getAnimefromdb( $id )
+	function getAnimefromdb( $id, $ep=false )
 	{
 		global $api;
 		$res = $api->db->select( '*', 'anidb_anime', array( 'anidbID' => $id ), __FILE__, __LINE__ );
 		$nRows = $api->db->rows( $res );
 		if ( $nRows >= 1 )
 		{
-			$anime = $api->db->fetch( $res );
-			return $anime;
+			if($ep)
+			{
+				if( ( $anime = $this->getAnime( $id, $ep ) ) != false)
+				{
+					return $anime;
+				}else{
+					return false;
+				}
+			}else{
+				$anime = $api->db->fetch( $res );
+				return $anime;
+			}
 		}else{
-			return false;
+			if($ep)
+			{
+				if( ( $anime = $this->getAnime( $id, $ep ) ) != false)
+				{
+					return $anime;
+				}else{
+					return false;
+				}
+			}else{
+				if( ( $anime = $this->getAnime( $id ) ) != false)
+				{
+					return $anime;
+				}else{
+					return false;
+				}
+			}
 		}
 	}
 	
 	function checkCache( $search ){
 		global $api;
-		$res = $api->db->select( '*', 'anidb_search', array('search' => $search ), __FILE__, __LINE__ );
+		preg_match( $this->_def['regex']['parsesearch'], $search, $matches );
+		$res = $api->db->select( '*', 'anidb_search', array('search' => $matches[1] ), __FILE__, __LINE__ );
 		$nRows = $api->db->rows( $res );
 		if ( $nRows >= 1 )
 		{
 			$row = $api->db->fetch( $res );
-			return $row->anidbID;
+			if(isset($matches[2]))
+			{
+				return (object) $this->getAnimefromdb($row->anidbID, $matches[2]);
+			}else{
+				return (object) $this->getAnimefromdb($row->anidbID);
+			}
 		}else{
 			return false;
 		}

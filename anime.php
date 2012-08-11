@@ -28,13 +28,11 @@ class anime{
 		{// Use from cache if it's available
 			foreach( $this->_exts_array as $ext )
 			{
-				if( ( $id = $ext->checkCache( $filteredsearch ) ) !== false )
+				if( ( $anime = $ext->checkCache( $filteredsearch ) ) !== false )
 				{// Search done before and we have a Anime ID
 					if( $this->_debug ) printf( "Anime ID: %s Found\n", $id );
-					if( ( $anime = $ext->getAnimefromdb( $id ) ) !== false ){
 						( preg_match( $reg, $string, $matches ) );
 						return $this->animeGetReport( $anime, $matches[3] );
-					}
 				}
 			}
 		}
