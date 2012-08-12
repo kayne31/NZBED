@@ -25,7 +25,7 @@ class games{
 			)
 	);
 	
-	function search( $search, $ignoreCache = false ){
+	function search( $search, $type, $ignoreCache = false ){
 		$filteredsearch = $this->filter( $search ); // run filter to clean up the search string
 		if( !$ignoreCache )
 		{// Use from cache if it's available
@@ -36,6 +36,10 @@ class games{
 					if( $this->_debug ) printf( "game URL: %s Found\n", $gameurl );
 					if( ( $game = $ext->getGamefromdb( $gameurl ) ) !== false ){
 						$report = $this->buildReport( $search );
+						if($type == 4)
+						{
+							$game->platform = 'pc';
+						}
 						return $this->gameGetReport( $game, $report );
 					}
 				}
@@ -47,6 +51,10 @@ class games{
 		{
 			if( ( $game = $ext->search( $filteredsearch ) ) != false){
 				$report = $this->buildReport( $search );
+				if($type == 4)
+				{
+					$game->platform = 'pc';
+				}
 				return $this->gameGetReport( $game, $report );
 			}		
 		}		

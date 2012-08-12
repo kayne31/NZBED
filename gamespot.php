@@ -2,7 +2,7 @@
 require_once( 'HTTP/Request.php' );
 
 class gamespot{
-	var $_debug = true;
+	var $_debug = false;
 	var $_def = array(
 			'myname' => 'gamespot',
 			'myurl' => '/(?:http:\/\/)?(?:www\.)?gamespot\.com\/[a-zA-Z\-0-9]+\//i',
