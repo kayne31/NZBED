@@ -5,8 +5,16 @@ USE `nzbed`;
 -- Removal of obsolete tables
 --
 
-DROP TABLE IF EXISTS `allmusic_album`, `allmusic_albumsearch`, `allmusic_artistsearch`, `googlemusic_album`, `googlemusic_albumsearch`; 
+DROP TABLE IF EXISTS `allmusic_album`, `allmusic_albumsearch`, `allmusic_artistsearch`, `googlemusic_album`, `googlemusic_albumsearch`;
 
+--
+-- Alter of TVRAGE columns
+--
+
+ALTER TABLE `tvrage_episode` CHANGE `tvrageShowID` `tvShowID` INT NOT NULL;
+ALTER TABLE `tvrage_search` CHANGE `tvrageShowID` `tvShowID` INT NOT NULL;
+ALTER TABLE `tvrage_show` CHANGE `tvrageShowID` `tvShowID` INT NOT NULL;
+ 
 --
 -- Table structure for table `anidb_anime`
 --
@@ -220,13 +228,63 @@ CREATE TABLE IF NOT EXISTS `tmdb_search` (
 
 
 --
+-- Table structure for table `tvdb_episode`
+--
+
+CREATE TABLE IF NOT EXISTS `tvdb_episode` (
+  `episodeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tvdbEpisodeID` int(10) unsigned NOT NULL DEFAULT '0',
+  `tvShowID` int(11) NOT NULL,
+  `series` varchar(4) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `episode` tinyint(4) NOT NULL DEFAULT '0',
+  `date` int(10) unsigned NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`episodeID`),
+  KEY `tvdbEpisodeID` (`tvdbEpisodeID`),
+  KEY `tvdbShowID` (`tvShowID`,`series`,`episode`)
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+--
+-- Table structure for table `tvdb_search`
+--
+
+CREATE TABLE IF NOT EXISTS `tvdb_search` (
+  `searchID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `search` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tvShowID` int(11) NOT NULL,
+  `ftvShowID` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`searchID`),
+  KEY `search` (`search`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+--
+-- Table structure for table `tvdb_show`
+--
+
+CREATE TABLE IF NOT EXISTS `tvdb_show` (
+  `showID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tvShowID` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `genre` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`showID`),
+  KEY `tvdbTextID` (`tvShowID`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+--
 -- Table structure for table `tvrage_episode`
 --
 
 CREATE TABLE IF NOT EXISTS `tvrage_episode` (
   `episodeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tvrageEpisodeID` int(10) unsigned NOT NULL DEFAULT '0',
-  `tvrageShowID` int(11) NOT NULL,
+  `tvShowID` int(11) NOT NULL,
   `series` varchar(4) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `episode` tinyint(4) NOT NULL DEFAULT '0',
   `date` int(10) unsigned NOT NULL DEFAULT '0',
@@ -234,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `tvrage_episode` (
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`episodeID`),
   KEY `tvrageEpisodeID` (`tvrageEpisodeID`),
-  KEY `tvrageShowID` (`tvrageShowID`,`series`,`episode`)
+  KEY `tvShowID` (`tvShowID`,`series`,`episode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=764 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -245,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `tvrage_episode` (
 CREATE TABLE IF NOT EXISTS `tvrage_search` (
   `searchID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `search` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `tvrageShowID` int(11) NOT NULL,
+  `tvShowID` int(11) NOT NULL,
   `ftvrageShowID` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`searchID`),
   KEY `search` (`search`)
@@ -258,11 +316,11 @@ CREATE TABLE IF NOT EXISTS `tvrage_search` (
 
 CREATE TABLE IF NOT EXISTS `tvrage_show` (
   `showID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tvrageShowID` int(11) NOT NULL,
+  `tvShowID` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `genre` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`showID`),
-  KEY `tvrageTextID` (`tvrageShowID`)
+  KEY `tvrageTextID` (`tvShowID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=144 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

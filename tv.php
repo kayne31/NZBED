@@ -1,5 +1,6 @@
 <?php
 require_once( INCLUDEPATH.'tvrage.php' );
+require_once( INCLUDEPATH.'tvdb.php' );
 
 class tv{
 	var $debug = false;
@@ -8,6 +9,8 @@ class tv{
 	var $_urlregex_array = array();// array to hold all the url regex from the extenstions
 	var $ed_def;
 	var $_error;
+	var $_currentExt;
+	var $_primary = 'tvrage';
 
 	function search( $search, $ignorecache = false ){
 		$this->ignoreCache = $ignorecache;
@@ -20,42 +23,71 @@ class tv{
 		$showquery = $matches[1];
 		foreach( $this->_exts_array as $ext )
 		{
-			if( ( $show = $ext->getFShow( $showquery ) ) != false){
-				if ( $this->debug ) printf("%s\n",$matches['mUsed']);
-				switch( $matches['mUsed'] ){
-					case ('Date'):
-						$report = $this->matchDate( $ext, $show, $matches );
-						break;
-					case ('TV'):
-						$report = $this->matchTv( $ext, $show, $matches );
-						break;
-					case ('DVD'):
-						$report = $this->matchDvd( $ext, $show, $matches );
-						break;
-					case ('Multi'):
-						$report = $this->matchMulti( $ext, $show, $matches );
-						break;
-					case ('Part'):
-						$report = $this->matchPart( $ext, $show, $matches );
-						break;
-					case ('Series'):
-						$report = $this->matchSeries( $ext, $show, $matches );
-						break;
-				}
-				return $report;
-			}else
+			if($ext->getName() === $this->_primary)
 			{
-				// some other stuff
-				if ( !isset( $ext->error ) )
-					$this->_error = 'Invalid show name: '.$showquery;
-				else
-					$this->_error = $ext->error;
-				return false;
+				$this->_currentExt = $ext->getName();
+				if( ( $show = $ext->getFShow( $showquery ) ) != false){
+					if ( $this->debug ) printf("%s\n",$matches['mUsed']);
+					switch( $matches['mUsed'] ){
+						case ('Date'):
+							return $this->matchDate( $ext, $show, $matches );
+							break;
+						case ('TV'):
+							return $this->matchTv( $ext, $show, $matches );
+							break;
+						case ('DVD'):
+							return $this->matchDvd( $ext, $show, $matches );
+							break;
+						case ('Multi'):
+							return $this->matchMulti( $ext, $show, $matches );
+							break;
+						case ('Part'):
+							return $this->matchPart( $ext, $show, $matches );
+							break;
+						case ('Series'):
+							return $this->matchSeries( $ext, $show, $matches );
+							break;
+					}
+				}
 			}
 		}
-		return false;// Could not find any matches
+		foreach( $this->_exts_array as $ext )
+		{
+			if($ext->getName() != $this->_primary)
+			{
+				$this->_currentExt = $ext->getName();
+				if( ( $show = $ext->getFShow( $showquery ) ) != false){
+					if ( $this->debug ) printf("%s\n",$matches['mUsed']);
+					switch( $matches['mUsed'] ){
+						case ('Date'):
+							return $this->matchDate( $ext, $show, $matches );
+							break;
+						case ('TV'):
+							return $this->matchTv( $ext, $show, $matches );
+							break;
+						case ('DVD'):
+							return $this->matchDvd( $ext, $show, $matches );
+							break;
+						case ('Multi'):
+							return $this->matchMulti( $ext, $show, $matches );
+							break;
+						case ('Part'):
+							return $this->matchPart( $ext, $show, $matches );
+							break;
+						case ('Series'):
+							return $this->matchSeries( $ext, $show, $matches );
+							break;
+					}
+				}
+			}
+		}
+		if ( !isset( $ext->error ) )
+			$this->_error = 'Invalid show name: '.$showquery;
+		else
+			$this->_error = $ext->error;
+		return false;
 	}
-	
+
 	function ismyurl( $url ){
 		foreach( $this->_urlregex_array as $reg )
 		{
@@ -78,7 +110,7 @@ class tv{
 					$showquery = str_replace( $this->ed_def['strip'], ' ', $matches[1] );
 					if ( ( $show = $ext->getShow( $showquery, $this->ignoreCache, true ) ) !== false )
 					{
-						if ( ( $ep = $ext->getIDEpisode( $show->tvrageShowID, $matches[2], $this->ignoreCache ) ) !== false )
+						if ( ( $ep = $ext->getIDEpisode( $show->tvShowID, $matches, $this->ignoreCache ) ) !== false )
 						{
 							// search for episode properties
 							return $this->tvGetReport( $show, $ep );
@@ -104,7 +136,6 @@ class tv{
 	{
 		global $ed;
 		$report = array();
-
 		$ep->title = preg_replace($this->ed_def['addPart']['from'], $this->ed_def['addPart']['to'], $ep->title );
 		$pNum_n = $pNum = substr($ep->title,strpos($ep->title, "(Part ")+6,-1);
 		if ( preg_match( $this->ed_def['info']['isRoman'], $pNum ) )
@@ -230,8 +261,12 @@ class tv{
 			$title = sprintf( '%s - %sx%02d-%sx%02d', $show->name, $listep[0]->rSeries, $listep[0]->rEpisode,
 					$listep[count($listep)-1]->rSeries, $listep[count($listep)-1]->rEpisode );
 		}
-
-		$url = sprintf( '%s/episode_list/%d', $show->url, $listep[0]->series );
+		if($this->_currentExt === 'tvrage')
+		{
+			$url = sprintf( '%s/episode_list/%d', $show->url, $listep[0]->series );
+		}else{
+			$url = $listep[0]->url;
+		}
 
 		if ( $ed->ids )
 		{
@@ -482,7 +517,7 @@ class tv{
 		$max = 50;
 		for ( $i = $min; $i <= $max; $i++ )
 		{
-			if ( ( $tep = $ext->getEpisode( $show->tvrageShowID, $matches[2], $i, $this->ignoreCache ) ) !== false )
+			if ( ( $tep = $ext->getEpisode( $show->tvShowID, $matches[2], $i, $this->ignoreCache ) ) !== false )
 			{
 				if ( $this->debug ) var_dump( $tep );
 				$ep[] = $tep;
@@ -504,7 +539,7 @@ class tv{
 		else
 			$num = $matches[2];
 			
-		if ( ( $ep = $ext->getEpisode( $show->tvrageShowID, 1, $num,
+		if ( ( $ep = $ext->getEpisode( $show->tvShowID, 1, $num,
 				$this->ignoreCache ) ) !== false )
 		{
 			if ( $this->debug ) var_dump( $ep );
@@ -512,13 +547,24 @@ class tv{
 		}
 		else
 		{
-			$ep = (object)array(
-					'series' => 1,
-					'episode' => $num,
-					'title' => sprintf( 'Part %d', $num ),
-					'url' => sprintf( '%s/episode_list/%d', $show->url, 1 ) );
-			if ( $this->debug ) var_dump( $ep );
-			return $this->tvGetReport( $show, $ep, $matches[4] );
+			if($this->_currentExt === 'tvrage')
+			{
+				$ep = (object)array(
+						'series' => 1,
+						'episode' => $num,
+						'title' => sprintf( 'Part %d', $num ),
+						'url' => sprintf( '%s/episode_list/%d', $show->url, 1 ) );
+				if ( $this->debug ) var_dump( $ep );
+				return $this->tvGetReport( $show, $ep, $matches[4] );
+			}else{
+				$ep = (object)array(
+						'series' => 1,
+						'episode' => $num,
+						'title' => sprintf( 'Part %d', $num ),
+						'url' => $show->url );
+				if ( $this->debug ) var_dump( $ep );
+				return $this->tvGetReport( $show, $ep, $matches[4] );
+			}
 		}
 	}
 
@@ -532,51 +578,82 @@ class tv{
 		$max = Max($epList[1]);
 		for ( $i = $min; $i <= $max; $i++ )
 		{
-			if ( ( $tep = $ext->getEpisode( $show->tvrageShowID, $matches[2], $i, $this->ignoreCache ) ) !== false )
+			if ( ( $tep = $ext->getEpisode( $show->tvShowID, $matches[2], $i, $this->ignoreCache ) ) !== false )
 			{
 				if ( $this->debug ) var_dump( $tep );
 				$ep[] = $tep;
 			}
 			else
 			{
-				$tep = (object)array(
-						'series' => $matches[2],
-						'episode' => $i,
-						'title' => sprintf( 'Season %d, Episode %d', $matches[2], $i ),
-						'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
-				if ( $this->debug ) var_dump( $tep );
-				$ep[] = $tep;
+				if($this->_currentExt === 'tvrage')
+				{
+					$tep = (object)array(
+							'series' => $matches[2],
+							'episode' => $i,
+							'title' => sprintf( 'Season %d, Episode %d', $matches[2], $i ),
+							'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
+					if ( $this->debug ) var_dump( $tep );
+					$ep[] = $tep;
+				}else{
+					$tep = (object)array(
+							'series' => $matches[2],
+							'episode' => $i,
+							'title' => sprintf( 'Season %d, Episode %d', $matches[2], $i ),
+							'url' => $show->url );
+					if ( $this->debug ) var_dump( $tep );
+					$ep[] = $tep;
+				}
 			}
 		}
 		if($min!=$max)
 			return $this->tvGetReportMulti( $show, $ep, $min, $max, $matches[4] );
 		else{
-			if ( ( $ep = $ext->getEpisode( $show->tvrageShowID, $matches[2], $min, $this->ignoreCache ) ) !== false ){
+			if ( ( $ep = $ext->getEpisode( $show->tvShowID, $matches[2], $min, $this->ignoreCache ) ) !== false ){
 				if ( $this->debug ) var_dump( $ep );
 				return $this->tvGetReport( $show, $ep, $matches[4] );
 			}
 			else{
-				$ep = (object)array(
-						'series' => sprintf("%d", $matches[2] ),
-						'episode' => $matches[3],
-						'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
-						'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
-				if ( $this->debug ) var_dump( $ep );
-				return $this->tvGetReport( $show, $ep, $matches[4] );
+				if($this->_currentExt === 'tvrage')
+				{
+					$ep = (object)array(
+							'series' => sprintf("%d", $matches[2] ),
+							'episode' => $matches[3],
+							'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
+							'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
+					if ( $this->debug ) var_dump( $ep );
+					return $this->tvGetReport( $show, $ep, $matches[4] );
+				}else{
+					$ep = (object)array(
+							'series' => sprintf("%d", $matches[2] ),
+							'episode' => $matches[3],
+							'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
+							'url' => $show->url );
+					if ( $this->debug ) var_dump( $ep );
+					return $this->tvGetReport( $show, $ep, $matches[4] );
+				}
 			}
 		}
 	}
 
 	function matchDvd( $ext, $show, $matches ){
-		$ep = (object)array(
-				'series' => $matches[2],
-				'episode' => $matches[3],
-				'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
-		return $this->tvGetReportDVD( $show, $ep, $matches[4] );
+		if($this->_currentExt === 'tvrage')
+		{
+			$ep = (object)array(
+					'series' => $matches[2],
+					'episode' => $matches[3],
+					'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
+			return $this->tvGetReportDVD( $show, $ep, $matches[4] );
+		}else{
+			$ep = (object)array(
+					'series' => $matches[2],
+					'episode' => $matches[3],
+					'url' => $show->url );
+			return $this->tvGetReportDVD( $show, $ep, $matches[4] );
+		}
 	}
 
 	function matchTv( $ext, $show, $matches ){
-		if ( ( $ep = $ext->getEpisode( $show->tvrageShowID, $matches[2], $matches[3],
+		if ( ( $ep = $ext->getEpisode( $show->tvShowID, $matches[2], $matches[3],
 				$this->ignoreCache ) ) !== false )
 		{
 			if ( $this->debug ) var_dump( $ep );
@@ -585,13 +662,24 @@ class tv{
 		}
 		else
 		{
-			$ep = (object)array(
-					'series' => sprintf("%d", $matches[2] ),
-					'episode' => $matches[3],
-					'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
-					'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
-			if ( $this->debug ) var_dump( $ep );
-			return $this->tvGetReport( $show, $ep, $matches[4] );
+			if($this->_currentExt === 'tvrage')
+			{
+				$ep = (object)array(
+						'series' => sprintf("%d", $matches[2] ),
+						'episode' => $matches[3],
+						'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
+						'url' => sprintf( '%s/episode_list/%d', $show->url, $matches[2] ) );
+				if ( $this->debug ) var_dump( $ep );
+				return $this->tvGetReport( $show, $ep, $matches[4] );
+			}else{
+				$ep = (object)array(
+						'series' => sprintf("%d", $matches[2] ),
+						'episode' => $matches[3],
+						'title' => sprintf( 'Season %d, Episode %d', $matches[2], $matches[3] ),
+						'url' => $show->url );
+				if ( $this->debug ) var_dump( $ep );
+				return $this->tvGetReport( $show, $ep, $matches[4] );
+			}
 		}
 	}
 
@@ -607,7 +695,7 @@ class tv{
 		}
 		if ( $this->debug ) printf(" Found Date: %s\n", date('d/m/Y', $date ) );
 		// get ID
-		if ( ( $ep = $ext->getDateEpisode( $show->tvrageShowID, $date, $this->ignoreCache ) ) !== false )
+		if ( ( $ep = $ext->getDateEpisode( $show->tvShowID, $date, $this->ignoreCache ) ) !== false )
 		{
 			if ( $this->debug ) var_dump( $ep );
 			if ( $ep->date == 0 )
@@ -721,14 +809,21 @@ class tv{
 
 	function tv(){
 		$this->_exts_array[] = new tvrage();
-
+		$this->_exts_array[] = new tvdb();
+		
 		foreach( $this->_exts_array as $ext )
 		{
 			$this->_urlregex_array[] = $ext->geturlregex();
 		}
 		global $ed;
-		$this->ed_def = $ed->get_def();		
+		$this->ed_def = $ed->get_def();
 	}
+	
+	function setPrimary( $primary )
+	{
+		$this->_primary = $primary;
+	}
+	
 	var $_def = array(
 			'regex' => array(
 					'strip' => array( '.', '-', '(', ')', '_', '#', '[', ']','"' ),

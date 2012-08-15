@@ -19,8 +19,7 @@ require_once( 'XML/Serializer.php' );
 
 class api
 {
-	var $xml;
-	
+	var $xml;	
 	var $db;
 	var $ed;
 	var $tv;
@@ -179,6 +178,12 @@ if ( isset( $_REQUEST['q'] ) )
 				break;
 			case 1:
 				$api->movies->setPrimary( 'imdb' );
+				break;
+			case 2:
+				$api->tv->setPrimary( 'tvrage' );
+				break;
+			case 3:
+				$api->tv->setPrimary( 'tvdb' );
 				break;
 		}
 	}
