@@ -91,7 +91,7 @@ class tvdb{
 
 	function findShow( $query, $ignoreCache = false )
 	{
-		if ( $this->debug ) printf("findShow( query:%s, ignoreCache:%d )\n", $query, $ignoreCache );
+		if ( $this->debug ) printf("findShow TVDB( query:%s, ignoreCache:%d )\n", $query, $ignoreCache );
 
 		global $api;
 
@@ -123,9 +123,9 @@ class tvdb{
 			if ( $xpage == 0 )
 				return false;
 			//print_r($xpage);
-			if ( isset( $xpage['Series']['seriesid'] ) )
+			if ( isset( $xpage['Series'][0]['seriesid'] ) )
 			{
-				$showid = $xpage['Series']['seriesid'];
+				$showid = $xpage['Series'][0]['seriesid'];
 				if ( $this->debug ) printf(" found a show, id: %d\n", $showid );
 				//if ( $this->debug ) var_dump( $xpage );
 				if ( $nRows >= 1 )

@@ -23,11 +23,11 @@ class tv{
 		$showquery = $matches[1];
 		foreach( $this->_exts_array as $ext )
 		{
-			if($ext->getName() === $this->_primary)
+			if($ext->getName() == $this->_primary)
 			{
 				$this->_currentExt = $ext->getName();
 				if( ( $show = $ext->getFShow( $showquery ) ) != false){
-					if ( $this->debug ) printf("%s\n",$matches['mUsed']);
+					if ( $this->debug ) printf("%s--%s\n",$matches['mUsed'],$show->name);
 					switch( $matches['mUsed'] ){
 						case ('Date'):
 							return $this->matchDate( $ext, $show, $matches );
