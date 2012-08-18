@@ -79,10 +79,10 @@ class ed
 							'720p' => '/(720p|\.?720)/i',
 							'1080i' => '/1080i/i',
 							'1080p' => '/1080p/i',
-							'3D' => '/\b(3d|sbs|h[-. ]?sbs|half[-. ]?sbs)\b/i'
+							'3D' => '/\b(3d|sbs|h[-. ]?sbs|half[-. ]?sbs|f[-. ]?sbs|full[-. ]?sbs)\b/i'
 					),
 					'Audio' => array(
-							'AC3/DD' => '/(ac3|dd[25]\.?[01])/i',
+							'AC3/DD' => '/(ac3|dd[25]\.?[01]|5\.1)/i',
 							'dts' => '/dts/i',
 							'MP3' => '/mp3/i',
 							'AAC' => '/aac/i',
@@ -114,7 +114,7 @@ class ed
 							'French' => '/((french)|(multi5))/i',
 							'German' => '/((\.+DL\.+)|(german(?!.sub?.))|(deutsch)|(multi(5|3)))/i',
 							'Spanish' => '/((spanish)|(multi5))/i',
-							'Italian' => '/((italian)|(multi(5|3)))/i',
+							'Italian' => '/((italian)|(multi(5|3))|((?<!\w)(ita)(?!\w)))/i',
 							'Dutch' => '/((dutch))/i',
 							'Polish' => '/((\.+PL\.+))/i',
 							'Swedish' => '/swedish/i'
@@ -127,7 +127,7 @@ class ed
 					'Subtitle' => array(
 							'French' => '/((vostfr)|(vost))/i',
 							'German' => '/(german.sub)/i',
-							'Dutch' => '/((nlsubs)|(nl.?subbed))/i'
+							'Dutch' => '/((nlsubs)|(nl.?subs)|(nl.?subbed))/i'
 					),
 			),
 			'filmMatch' => array(
@@ -152,22 +152,80 @@ class ed
 			'siteAttributes' => array(
 					'videogenre' => array(
 							'Action' => 'Action/Adv',
+							'Action & Adventure' => 'Action/Adv',
+							'Action and Adventure' => 'Action/Adv',						
 							'Adventure' => 'Action/Adv',
+							'Animation' => 'Animation',							
+							'Arts & Crafts' => 'Family',
+							'Automobiles' => 'Family',
+							'Biography' => 'Documentary',							
+							'Buy, Sell & Trade' => 'Reality',
 							'Celebrities' => 'Reality',
-							'Dance' => 'Reality',
+							'Children' => 'Children',
+							'Comedy' => 'Comedy',
+							'Cooking/Food' => 'Reality',
+							'Crime' => 'Crime',
+							'Current Events' => 'Reality',
+							'Dance' => 'Family',
+							'Debate' => 'Reality',
+							'Design/Decorating' => 'Reality',
 							'Disaster' => 'Action/Adv',
+							'Discovery/Science' => 'Documentary',
+							'Documentary' => 'Documentary',
+							'Drama' => 'Drama',
+							'Education' => 'Documentary',
+							'Educational' => 'Documentary',
+							'Family' => 'Family',
+							'Fantasy' => 'Fantasy',
+							'Fashion/Makeup' => 'Family',
+							'Financial/Business' => 'Reality',
+							'Fitness' => 'Family',
+							'Game-Show' => 'Family',
+							'Game Show' => 'Reality',							
+							'Garden/Landscape' => 'Reality',
+							'History' => 'Documentary',
+							'Home and Garden' => 'Family',							
+							'Horror' => 'Horror',							
+							'Horror/Supernatural' => 'Horror',
+							'Housing/Building' => 'Reality',
+							'How To/ Do It Yourself' => 'Reality',
+							'Interview' => 'Reality',
+							'Kids' => 'Children',							
 							'Lifestyle' => 'Reality',
-							'Military' => 'War',
+							'Military/War' => 'War',
 							'Music' => 'Musical',
+							'Musical' => 'Musical',							
+							'Mystery' => 'Mystery',
+							'News' => 'Reality',							
+							'Pets/Animals' => 'Family',
+							'Politics' => 'Documentary',
+							'Reality' => 'Reality',
+							'Reality-TV' => 'Reality',												
 							'Religion' => 'Family',
-							'Science Fiction' => 'Sci-Fi',
-							'Soaps' => 'Comedy',
+							'Romance' => 'Romance',							
+							'Romance/Dating' => 'Romance',
+							'Science Fiction' => 'SciFi',
+							'Science-Fiction' => 'SciFi',							
+							'Sci-Fi' => 'SciFi',
+							'Sketch/Improv' => 'Comedy',
+							'Soap' => 'Drama',							
+							'Soaps' => 'Drama',
+							'Sport' => 'Sport',							
 							'Sports' => 'Sport',
 							'Sporting Event' => 'Sport',
-							'Sports Film' => 'Sport',
-							'Suspense' => 'Thriller',
+							'Sports Film' => 'Sport',													
+							'Super Heroes' => 'Action/Adv',
+							'Suspense' => 'Thriller',							
 							'Talent' => 'Reality',
-							'Teens' => 'Family'
+							'Talk-Show' => 'Reality',
+							'Talk Show' => 'Family',												
+							'Tech/Gaming' => 'Reality',
+							'Teens' => 'Family',
+							'Thriller' => 'Thriller',
+							'Travel' => 'Reality',
+							'War' => 'War',							
+							'Western' => 'Western',
+							'Wildlife' => 'Documentary'
 					),
 					'class' => array(
 							'Animation' => 'Animation',
@@ -552,7 +610,7 @@ class ed
 		$old= '';
 		while( strcmp( $string, $old ) != 0 )
 		{
-			if ( ( $game = $api->games->search( $string, $this->ignoreCache ) ) !== false )
+			if ( ( $game = $api->games->search( $string, $type, $this->ignoreCache ) ) !== false )
 			{
 				return $game;
 			}

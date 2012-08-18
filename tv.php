@@ -191,11 +191,10 @@ class tv{
 		}
 			
 		$class = explode( ' | ', $show->class );
-
-		$genres = explode( ' | ', $show->genre );
-
+		$genres = explode( '|', $show->genre );
 		foreach( $genres as $gen )
 		{
+			$gen = trim($gen);
 			if ( isset( $this->ed_def['siteAttributes']['videogenre'][$gen] ) )
 			{
 				$ed->addAttr( $report, 'TV', 'VideoGenre', $this->ed_def['siteAttributes']['videogenre'][$gen] );

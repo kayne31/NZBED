@@ -440,7 +440,7 @@ class tvdb{
 				( mt_rand(1, 100) <= (100 * 0.9) ) &&
 				( $ignoreCache == false ) )
 		{
-			if ( $this->debug ) printf(" using episode cache\n" );
+			if ( $this->debug ) print("using episode cache\n" );
 			return $row;
 		}
 
