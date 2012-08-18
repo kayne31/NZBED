@@ -134,7 +134,17 @@ class tvdb{
 					$api->db->insert( 'tvdb_search', array( 'tvShowID' => $showid, 'search' => $query ), __FILE__, __LINE__ );
 				return $showid;
 			}
-			else
+			else if(isset($xpage['Series']['seriesid']))
+			{
+				$showid = $xpage['Series']['seriesid'];
+				if ( $this->debug ) printf(" found a show, id: %d\n", $showid );
+				//if ( $this->debug ) var_dump( $xpage );
+				if ( $nRows >= 1 )
+					$api->db->update( 'tvdb_search', array( 'tvShowID' => $showid ), array( 'search' => $query ), __FILE__, __LINE__ );
+				else
+					$api->db->insert( 'tvdb_search', array( 'tvShowID' => $showid, 'search' => $query ), __FILE__, __LINE__ );
+				return $showid;
+			}else
 			{
 				return false;
 			}
