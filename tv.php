@@ -435,7 +435,7 @@ class tv{
 			else
 				$report[$this->ed_def['report']['fields']['title']] = sprintf( '%s - %04d-%02d-%02d', $show->name, date( 'Y', $ep->date ), date( 'm', $ep->date ), date( 'd', $ep->date ));
 			$report[$this->ed_def['report']['fields']['url']] = $ep->url;
-			$report[$this->ed_def['report']['fields']['category']] = $this->_def['report']['category']['TV'];
+			$report[$this->ed_def['report']['fields']['category']] = $this->ed_def['report']['category']['TV'];
 		}
 		else
 		{
