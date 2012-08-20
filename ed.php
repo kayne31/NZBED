@@ -286,7 +286,8 @@ class ed
 							'Consoles' => 2,
 							'Games' => 4,
 							'Music' => 7,
-							'Anime' => 11
+							'Anime' => 11,
+							'Books' => 13
 					),
 					'categoryGroups' => array(
 							'Movies' => array( 'Format', 'Source', 'VideoGenre', 'Audio', 'Region', 'Language', 'Subtitle' ),
@@ -295,6 +296,7 @@ class ed
 							'Games' => array( 'Media', 'GameGenre', 'Language' ),
 							'Music' => array( 'Audio', 'AudioGenre' ),
 							'Anime' => array( 'Anime', 'Format', 'Language', 'Subtitle' ),
+							'Books' => array( 'Language', 'BookType', 'BookGenre' ),
 							'All' => array( 'Format', 'Source', 'VideoGenre', 'Audio', 'Region', 'Media', 'ConsolePlatform', 'GameGenre', 'AudioGenre', 'Language', 'Anime', 'Subtitle' )
 					),
 					'attributeGroups' => array(
@@ -309,7 +311,9 @@ class ed
 							'AudioGenre' => 'ps_rb_audio_genre',
 							'Language' => 'ps_rb_language',
 							'Anime' => 'ps_rb_anime',
-							'Subtitle' => 'ps_rb_subtitle'
+							'Subtitle' => 'ps_rb_subtitle',
+							'BookType' => 'ps_rb_book_type',
+							'BookGenre' => 'ps_rb_book_genre'
 					),
 					'attributeID' => array(
 							'Source' => array(
@@ -475,6 +479,28 @@ class ed
 									'Finnish' => 65536,
 									'Turkish' => 262144
 							),
+							'BookType' => array(
+									'Audio' => 16,
+									'Fiction' => 1,
+									'Non-Fiction' => 2,
+									'Interactive' => 32,
+									'Magazine' => 8,
+									'Comic' => 4
+							),
+							'BookGenre' => array(
+									'Action/Adv' => 2048,
+									'Education' => 8,
+									'Fantasy' => 1024,
+									'History' => 32,
+									'Horror' => 64,
+									'Mystery' => 8192,
+									'Reference' => 4,
+									'Religion' => 128,
+									'Romance' => 256,
+									'Sci-Fi' => 512,
+									'Technical' => 16,
+									'Thriller' => 4096
+							)
 					)
 			),
 			'attributeExclude' => array(
@@ -552,6 +578,8 @@ class ed
 				return $this->gameQuery( $string, $cat );
 			case 11:
 				return $this->animeQuery( $string );
+			case 13:
+				return $this->bookQuery( $string );
 			default:
 				if ( $cat > 20 )
 				{
@@ -562,6 +590,18 @@ class ed
 					$this->_error = 'No Category Determined, please select Category manually';
 					return false;
 				}
+		}
+	}
+	
+	function bookQuery( $string )
+	{
+		global $api;
+		if ( $this->_debug ) printf("bookQuery( string:%s )\n", $string );
+		if ( ( $result = $api->books->search( $string, $this->ignoreCache ) ) != false)
+		{
+			return $result;
+		}else{
+			return false;
 		}
 	}
 
