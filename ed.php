@@ -127,7 +127,8 @@ class ed
 					'Subtitle' => array(
 							'French' => '/((vostfr)|(vost))/i',
 							'German' => '/(german.sub)/i',
-							'Dutch' => '/((nlsubs)|(nl.?subs)|(nl.?subbed))/i'
+							'Dutch' => '/((nlsubs)|(nl.?subs)|(nl.?subbed))/i',
+							'Swedish' =>'/swesub/i'
 					),
 			),
 			'filmMatch' => array(
